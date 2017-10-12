@@ -21,4 +21,7 @@ wp-includes
 /sitemap.xml
 /sitemap.xml.gz
 
-
+.DS_Store
+.vs-code/
+node_modules/
+vendor/

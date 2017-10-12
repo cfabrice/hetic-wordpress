@@ -1,6 +1,6 @@
-# PARTIEL T3 #
+# README #
 
-**Baptiste VILLAIN**
+**Wordpress HETIC**
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa voluptate explicabo eligendi.
 
@@ -9,8 +9,5 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa voluptate explic
 > - 
 
 ## INSTALLATION ##
-> - npm install
-> - composer install
-> - path/to/web in htaccess
-> - ?? install db ??
-> - Enjoy !
+> - 
+> - 
