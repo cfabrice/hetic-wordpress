@@ -5,24 +5,19 @@
  * Date: 06/10/2017
  * Time: 14:08
  */
-function ajout_scripts() {
 
-// enregistrement d'un nouveau script
-	wp_register_script('main_script', get_template_directory_uri() . '/scripts/main.js', array('jquery'),'1.1', true);
+define( 'THEME_PATH' ,          get_template_directory()            );
+//define( 'TEMPLATE_PATH' ,       THEME_PATH .    '/templates'        );
 
-// appel du script dans la page
-	wp_enqueue_script('main_script');
+define( 'THEME_URL' ,           get_template_directory_uri()        );
+define( 'CSS_URL' ,             THEME_URL .    '/assets/css'       );
+define( 'IMAGES_URL' ,          THEME_URL .    '/assets/img'       );
+define( 'JS_URL' ,              THEME_URL .    '/assets/js'      );
+//define( 'FAVICONS_URL' ,        THEME_URL .    '/dist/favicon'      );
+//define( 'ADMIN_IMAGES_URL' ,    IMAGES_URL .   '/admin'             );
 
-// enregistrement d'un nouveau style
-	wp_register_style( 'main_style', get_template_directory_uri() . '/styles/main.css' );
 
-// appel du style dans la page
-	wp_enqueue_style( 'main_style' );
-
-}
-function thumbnails_theme_support(){
-	add_theme_support( 'post-thumbnails' );
+foreach ( glob( THEME_PATH . "/inc/*.php" ) as $file ) {
+	include_once $file;
 }
 
-add_action( 'wp_enqueue_scripts', 'ajout_scripts' );
-add_action( 'after_setup_theme', 'thumbnails_theme_support' );
