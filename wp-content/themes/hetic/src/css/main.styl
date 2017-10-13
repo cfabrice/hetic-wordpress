@@ -4,6 +4,7 @@ body,html
   font-family 'Raleway', sans-serif
   font-weight 400
   overflow-x hidden
+  cursor default
 
 *, *::after, *::before
   box-sizing: border-box
@@ -22,7 +23,7 @@ h1, h2
 .section
   padding-top 40px
   // background red
-  &-title
+  &--title
     text-transform capitalize
     font-size 42px
     color $black
@@ -32,6 +33,8 @@ h1, h2
     position relative
     @media screen and (min-width: $laptop)
       display inline-block
+    &::selection
+      background $yellow
     &::after
       content ""
       position absolute
@@ -41,3 +44,45 @@ h1, h2
       height 2px
       background $yellow
       border-radius 2px
+  &--link
+    display block
+    width calc(100% - 20vw)
+    margin 0 10vw
+    margin-top 30px
+    height 70px
+    line-height 70px
+    text-align center
+    background $grey
+    border none
+    color $white
+    font-size 20px
+    transition all .3s ease-in-out
+    position relative
+    // overflow hidden
+    z-index 1
+    transform translateX(0px)    
+    &::before
+      content ""
+      position absolute
+      width 30px
+      height 100%
+      top 0px
+      left -30px
+      z-index -1
+      background $yellow    
+      transform-origin 100% 50%
+      transform scaleX(0)
+      transition all .3s ease-in-out      
+
+    // &:active
+    //   background darken($grey, 30%)
+    &:hover
+      transform translateX(30px)
+      &::before
+        transform scaleX(1)
+    @media screen and (min-width: $laptop)
+      width 340px
+      position absolute
+      bottom 0
+      right 10vw
+      margin 0
