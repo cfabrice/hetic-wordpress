@@ -1,3 +1,9 @@
 *
 !.gitignore
 !wp-content
+!wp-content/plugins
+!wp-content/plugins/**
+!wp-content/themes
+!wp-content/themes/**
+!wp-content/mu-plugins
+!wp-content/mu-plugins/**
