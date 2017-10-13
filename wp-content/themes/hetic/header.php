@@ -22,18 +22,38 @@
         <span class="header-burger--line"></span>
     </button>
     <nav class="header-nav">
-        <ul class="header-nav-list header-nav-list-left">
+        <!-- <ul class="header-nav-list header-nav-list-left">
             <li><a href="#" class="active">home</a></li>
             <li><a href="#">news</a></li>
             <li><a href="#">projects</a></li>
             <li><a href="#">exhibitions</a></li>
             <li><a href="#">jr</a></li>
+        </ul> -->
+        <ul class="header-nav-list header-nav-list-left">
+		    <?php wp_nav_menu(array(
+			    'menu_class'     => 'fm',
+			    'items_wrap'     => '%3$s',
+			    'walker'         => new jr_Walker_Menu_Header_Left(),
+			    'container'      => false,
+			    'echo'           => true,
+			    'theme_location' => 'header-menu-left',
+		    )); ?>
         </ul>
         <ul class="header-nav-list header-nav-list-right">
+		    <?php wp_nav_menu(array(
+			    'menu_class'     => 'fm',
+			    'items_wrap'     => '%3$s',
+			    'walker'         => new jr_Walker_Menu_Header_Right(),
+			    'container'      => false,
+			    'echo'           => true,
+			    'theme_location' => 'header-menu-right',
+		    )); ?>
+        </ul>
+      <!--  <ul class="header-nav-list header-nav-list-right">
             <li><a href="#">Get Involved</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="#">Shop</a></li>
             <li><a href="#"><img src="<?php echo IMAGES_URL ?>/lang-france.png" alt="lang fr"></a></li>
-        </ul>
+        </ul> -->
     </nav>
 </header>

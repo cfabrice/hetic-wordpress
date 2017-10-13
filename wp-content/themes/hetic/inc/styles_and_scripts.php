@@ -30,3 +30,21 @@ function ajout_scripts() {
 function thumbnails_theme_support(){
 	add_theme_support( 'post-thumbnails' );
 }
+
+function add_last_project_type_init() {
+	$args = array(
+		'public' => true,
+		'label'  => 'Last Projects'
+	);
+	register_post_type( 'last_projects', $args );
+}
+add_action( 'init', 'add_last_project_type_init' );
+
+function add_news_type_init() {
+	$args = array(
+		'public' => true,
+		'label'  => 'News'
+	);
+	register_post_type( 'news', $args );
+}
+add_action( 'init', 'add_news_type_init' );
