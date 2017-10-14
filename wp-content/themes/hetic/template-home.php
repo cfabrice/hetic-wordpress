@@ -3,7 +3,7 @@
 <?php get_header(); ?>
 <main class="main">
     <section class="section section-social">
-        <div class="section-social-photo" style="background-image:url('<?php echo IMAGES_URL ?>/JR-insta.jpg')"></div>
+        <div class="section-social-photo" style="background-image:url('<?php echo THEME_URL ?>/instagram/photo.jpg')"></div>
         <div class="section-social-content">
             <h2 class="section-social-content--title">
                 <?php the_field('section_1_title') ?>
@@ -15,10 +15,17 @@
             </span>
             </div>
             <div class="section-social-content--text">
-	            <?php the_field('section_1_text') ?>
+                <p>
+                    <?php 
+                    $str = file_get_contents(THEME_URL . '/instagram/instagram.json');
+                    $json = json_decode($str);
+                    echo $json->desc
+                    // the_field('section_1_text') 
+                    ?>
+                </p>
             </div>
             <div class="section-social-content--date">
-                3 hours ago
+                <?php echo $json->date ?>
             </div>
         </div>
         <div class="section-social-links">
@@ -74,7 +81,7 @@
 	}
 	$lastposts = get_posts( array(
 		'posts_per_page' => 4,
-		'post_type' => 'last_projects',
+		'post_type' => 'projects',
 		'orderby' => 'date',
 		'order' => 'DESC'
 	) );
@@ -111,10 +118,127 @@
         </a>
     </section>
     <?php } ?>
-    <section class="section-exhibitions">
-        <div class="section-exhibitions--title section--title">
-            exhibitions
+    <section class="section section-exhibitions">
+    <div class="section-exhibitions--title section--title">
+      exhibitions
+    </div>
+    <div class="section-exhibitions-container">
+      <div class="section-exhibitions-container-slider">
+        <div class="section-exhibitions-container-slider-wrapper">
+          <div class="section-exhibitions-container-slider-wrapper-list">
+            <div class="section-exhibitions-container-slider-wrapper-list--item" style="background-image: url('<?php echo IMAGES_URL ?>/exhibitions-1.jpg')"></div>
+            <div class="section-exhibitions-container-slider-wrapper-list--item" style="background-image: url('<?php echo IMAGES_URL ?>/exhibitions-1.jpg')"></div>
+            <div class="section-exhibitions-container-slider-wrapper-list--item" style="background-image: url('<?php echo IMAGES_URL ?>/exhibitions-1.jpg')"></div>
+            <div class="section-exhibitions-container-slider-wrapper-list--item" style="background-image: url('<?php echo IMAGES_URL ?>/exhibitions-1.jpg')"></div>
+            <div class="section-exhibitions-container-slider-wrapper-list--item" style="background-image: url('<?php echo IMAGES_URL ?>/exhibitions-1.jpg')"></div>
+            <div class="section-exhibitions-container-slider-wrapper-list--item" style="background-image: url('<?php echo IMAGES_URL ?>/exhibitions-1.jpg')"></div>
+          </div>
         </div>
-    </section>
+        <div class="section-exhibitions-container-slider-nav">
+          <div class="section-exhibitions-container-slider-nav-list">
+            <button class="section-exhibitions-container-slider-nav-list--item active">Paris</button>
+            <button class="section-exhibitions-container-slider-nav-list--item">London</button>
+            <button class="section-exhibitions-container-slider-nav-list--item">Berlin</button>
+            <button class="section-exhibitions-container-slider-nav-list--item">Tokyo</button>
+            <button class="section-exhibitions-container-slider-nav-list--item">Honk-Kong</button>
+            <button class="section-exhibitions-container-slider-nav-list--item">Shangai</button>
+          </div>
+        </div>
+      </div>
+      <div class="section-exhibitions-container-content">
+        <div class="section-exhibitions-container-content-wrapper">
+          <div class="section-exhibitions-container-content-wrapper-list">
+            <div class="section-exhibitions-container-content-wrapper-list--item">
+              <div class="section-exhibitions-container-content-wrapper-list--item--date">
+                From March 1st to June 29th, 2014
+              </div>
+              <div class="section-exhibitions-container-content-wrapper-list--item--title">
+                baden baden, germany - frieder burda museum
+              </div>
+              <div class="section-exhibitions-container-content-wrapper-list--item--text">
+                In February 2014, JR presents a solo exhibition at the Museum Frieder Burda, in Baden Baden, Germany - a retrospective of his career, with a special Inside Out Photobooth installation. The museum reveals for the first time the images from the Wrinkles of the City project organized in Berlin in April 2013.
+                <br/>
+                <br/>
+                Besides, his Unframed project also comes to Baden-Baden. As a large-scale project in the city’s urban space. Unframed Baden Baden addresses German-French history and the friendship between the two countries.                    
+              </div>
+            </div>
+            <div class="section-exhibitions-container-content-wrapper-list--item">
+              <div class="section-exhibitions-container-content-wrapper-list--item--date">
+                From March 1st to June 29th, 2014
+              </div>
+              <div class="section-exhibitions-container-content-wrapper-list--item--title">
+                baden baden, germany - frieder burda museum
+              </div>
+              <div class="section-exhibitions-container-content-wrapper-list--item--text">
+                In February 2014, JR presents a solo exhibition at the Museum Frieder Burda, in Baden Baden, Germany - a retrospective of his career, with a special Inside Out Photobooth installation. The museum reveals for the first time the images from the Wrinkles of the City project organized in Berlin in April 2013.
+                <br/>
+                <br/>
+                Besides, his Unframed project also comes to Baden-Baden. As a large-scale project in the city’s urban space. Unframed Baden Baden addresses German-French history and the friendship between the two countries.                    
+              </div>
+            </div>
+            <div class="section-exhibitions-container-content-wrapper-list--item">
+              <div class="section-exhibitions-container-content-wrapper-list--item--date">
+                From March 1st to June 29th, 2014
+              </div>
+              <div class="section-exhibitions-container-content-wrapper-list--item--title">
+                baden baden, germany - frieder burda museum
+              </div>
+              <div class="section-exhibitions-container-content-wrapper-list--item--text">
+                In February 2014, JR presents a solo exhibition at the Museum Frieder Burda, in Baden Baden, Germany - a retrospective of his career, with a special Inside Out Photobooth installation. The museum reveals for the first time the images from the Wrinkles of the City project organized in Berlin in April 2013.
+                <br/>
+                <br/>
+                Besides, his Unframed project also comes to Baden-Baden. As a large-scale project in the city’s urban space. Unframed Baden Baden addresses German-French history and the friendship between the two countries.                    
+              </div>
+            </div>
+            <div class="section-exhibitions-container-content-wrapper-list--item">
+              <div class="section-exhibitions-container-content-wrapper-list--item--date">
+                From March 1st to June 29th, 2014
+              </div>
+              <div class="section-exhibitions-container-content-wrapper-list--item--title">
+                baden baden, germany - frieder burda museum
+              </div>
+              <div class="section-exhibitions-container-content-wrapper-list--item--text">
+                In February 2014, JR presents a solo exhibition at the Museum Frieder Burda, in Baden Baden, Germany - a retrospective of his career, with a special Inside Out Photobooth installation. The museum reveals for the first time the images from the Wrinkles of the City project organized in Berlin in April 2013.
+                <br/>
+                <br/>
+                Besides, his Unframed project also comes to Baden-Baden. As a large-scale project in the city’s urban space. Unframed Baden Baden addresses German-French history and the friendship between the two countries.                    
+              </div>
+            </div>
+            <div class="section-exhibitions-container-content-wrapper-list--item">
+              <div class="section-exhibitions-container-content-wrapper-list--item--date">
+                From March 1st to June 29th, 2014
+              </div>
+              <div class="section-exhibitions-container-content-wrapper-list--item--title">
+                baden baden, germany - frieder burda museum
+              </div>
+              <div class="section-exhibitions-container-content-wrapper-list--item--text">
+                In February 2014, JR presents a solo exhibition at the Museum Frieder Burda, in Baden Baden, Germany - a retrospective of his career, with a special Inside Out Photobooth installation. The museum reveals for the first time the images from the Wrinkles of the City project organized in Berlin in April 2013.
+                <br/>
+                <br/>
+                Besides, his Unframed project also comes to Baden-Baden. As a large-scale project in the city’s urban space. Unframed Baden Baden addresses German-French history and the friendship between the two countries.                    
+              </div>
+            </div>
+            <div class="section-exhibitions-container-content-wrapper-list--item">
+              <div class="section-exhibitions-container-content-wrapper-list--item--date">
+                From March 1st to June 29th, 2014
+              </div>
+              <div class="section-exhibitions-container-content-wrapper-list--item--title">
+                baden baden, germany - frieder burda museum
+              </div>
+              <div class="section-exhibitions-container-content-wrapper-list--item--text">
+                In February 2014, JR presents a solo exhibition at the Museum Frieder Burda, in Baden Baden, Germany - a retrospective of his career, with a special Inside Out Photobooth installation. The museum reveals for the first time the images from the Wrinkles of the City project organized in Berlin in April 2013.
+                <br/>
+                <br/>
+                Besides, his Unframed project also comes to Baden-Baden. As a large-scale project in the city’s urban space. Unframed Baden Baden addresses German-French history and the friendship between the two countries.              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="<?php echo get_page_link( get_page_by_title( 'exhibitions' )->ID ); ?>" class="section-projects--link section--link">
+      See all exhibitions
+    </a>
+  </section>
 </main>
 <?php get_footer(); ?>

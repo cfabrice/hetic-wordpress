@@ -31,20 +31,22 @@ function thumbnails_theme_support(){
 	add_theme_support( 'post-thumbnails' );
 }
 
-function add_last_project_type_init() {
-	$args = array(
-		'public' => true,
-		'label'  => 'Last Projects'
-	);
-	register_post_type( 'last_projects', $args );
-}
-add_action( 'init', 'add_last_project_type_init' );
 
-function add_news_type_init() {
-	$args = array(
-		'public' => true,
-		'label'  => 'News'
-	);
-	register_post_type( 'news', $args );
+function jr_menus() {
+	register_nav_menus( array(
+		'header-menu-right' => 'Header menu right',
+		'header-menu-left' => 'Header menu left',
+	) );
 }
-add_action( 'init', 'add_news_type_init' );
+
+function wpc_mime_types($mimes) {
+	$mimes['svg'] = 'image/svg+xml';
+	return $mimes;
+}
+add_filter('upload_mimes', 'wpc_mime_types');
+add_action( 'init', 'jr_menus' );
+
+add_image_size( 'large', 700, '', true );
+add_image_size( 'medium', 250, '', true );
+add_image_size( 'small', 120, '', true );
+add_image_size( 'custom-size', 1200, '', true );
