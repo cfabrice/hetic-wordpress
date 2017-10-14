@@ -17,3 +17,30 @@ function add_news_type_init() {
 	register_post_type( 'news', $args );
 }
 add_action( 'init', 'add_news_type_init' );
+
+function add_exhibitions_type_init() {
+	$args = array(
+		'public' => true,
+		'label'  => 'Exhibitions'
+	);
+	register_post_type( 'exhibitions', $args );
+}
+add_action( 'init', 'add_exhibitions_type_init' );
+
+function add_video_type_init() {
+	$args = array(
+		'public' => true,
+		'label'  => 'Vidéos'
+	);
+	register_post_type( 'videos', $args );
+}
+add_action( 'init', 'add_video_type_init' );
+
+function add_jr_type_init() {
+	$args = array(
+		'public' => true,
+		'label'  => 'JR'
+	);
+	register_post_type( 'jr', $args );
+}
+add_action( 'init', 'add_jr_type_init' );
