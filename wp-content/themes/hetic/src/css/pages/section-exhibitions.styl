@@ -1,0 +1,138 @@
+.section-exhibitions
+  @media screen and (min-width: $laptop)  
+    padding-bottom 120px
+  &-container
+    width 100%
+    margin-top 40px
+    @media screen and (min-width: $laptop)
+      display flex
+      flex-direction row
+      flex-wrap wrap
+    &-slider
+      flex-shrink 0        
+      width 100%
+      height calc(100vw + 80px)
+      max-height calc(60vh  + 80px)
+      @media screen and (min-width: $laptop)
+        width calc(50vw + 10vw)
+        height auto
+        max-height inherit 
+        display flex
+        flex-direction row
+      &-wrapper
+        width 100vw
+        height 100vw
+        max-width 60vh
+        max-height 60vh
+        margin auto
+        overflow hidden
+        @media screen and (min-width: $laptop)
+          margin 0
+          max-width inherit
+          max-height inherit
+          width 45vw
+          height 100%
+        &-list
+          display flex
+          flex-direction row
+          flex-wrap nowrap
+          transition transform .3s ease-in-out
+          width 100%
+          height 100%   
+          &--item
+            width 100vw
+            height 100vw
+            max-width 60vh
+            max-height 60vh
+            background-size cover
+            flex-shrink 0
+            // background pink            
+            // &:nth-child(2n)
+            //   background tomato
+            @media screen and (min-width: $laptop)
+              width 100%
+              height 100%
+              max-width inherit
+              max-height inherit
+      &-nav
+        height 80px
+        width 100%
+        max-width 60vh
+        margin 0 auto
+        overflow hidden
+        @media screen and (min-width: $laptop)
+          width 15vw
+          height 100%
+          margin 0
+        &-list
+          width auto
+          height 100%
+          display flex
+          flex-direction row
+          flex-wrap nowrap
+          transition transform .3s ease-in-out
+          @media screen and (min-width: $laptop)
+            width 100%
+            height 100%
+            flex-direction column         
+          &--item
+            display block
+            flex-shrink 0
+            width calc(100% / 3)
+            height 100%
+            text-align center
+            font-size 18px
+            color $black
+            opacity 0.5
+            transition all 0.45s ease-in-out
+            background none         
+            border none
+            outline none
+            cursor pointer
+            @media screen and (min-width: $laptop)
+              width 100%
+              height calc(100% / 6)
+            &.active
+              opacity 1
+              color $yellow
+
+    &-content
+      width calc(100% - 10vw)
+      height auto
+      margin 0 5vw
+      border 1px solid $yellow
+      padding 5vw
+      flex-shrink 0
+      @media screen and (min-width: $laptop)
+        width calc(50vw - 10vw)
+        margin 0
+        padding 2vw 5vw
+      &-wrapper
+        width 100%
+        height auto
+        overflow hidden
+        &-list
+          display flex
+          flex-direction row
+          flex-wrap nowrap
+          transition transform .3s ease-in-out          
+          &--item 
+            flex-shrink 0
+            width 100%
+            height auto
+            &--date
+              font-size 12px
+              text-transform uppercase
+              color $black
+              opacity 0.5
+            &--title
+              font-size 28px
+              color $black
+              text-transform uppercase
+              margin 20px 0 25px 0
+            &--text
+              font-size 17px
+              color $black
+              opacity 0.7
+              line-height 26px
+              text-align justify
