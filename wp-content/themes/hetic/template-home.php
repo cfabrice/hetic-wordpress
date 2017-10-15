@@ -240,5 +240,59 @@
       See all exhibitions
     </a>
   </section>
+    <section class="section section-videos">
+        <h2 class="section-videos--title section--title">
+            videos
+        </h2>
+        <div class="section-videos-wrapper">
+            <video class="section-videos-wrapper-video" src="<?php echo VIDEOS_URL; ?>/JR-video-1.mp4"></video>
+            <div class="section-videos-wrapper-controls">
+                <button class="section-videos-wrapper-controls--toggle">
+            <span class="section-videos-wrapper-controls--toggle-play">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="12.3px" height="14px" viewBox="0 0 12.3 14" style="enable-background:new 0 0 12.3 14;" xml:space="preserve"><polygon class="st0" points="11.8,7 0.5,0.5 0.5,13.5 "/></svg>
+            </span>
+                    <span class="section-videos-wrapper-controls--toggle-pause">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="14.8px" height="14px" viewBox="0 0 14.8 14" style="enable-background:new 0 0 14.8 14;" xml:space="preserve"> <rect x="0.5" y="0.5" class="st0" width="5" height="13"/> <rect x="9.3" y="0.5" class="st0" width="5" height="13"/> </svg>
+            </span>
+                </button>
+                <div class="section-videos-wrapper-controls-time section-videos-wrapper-controls-time-current">00:00</div>
+                <div class="section-videos-wrapper-controls-time section-videos-wrapper-controls-time-duration">00:00</div>
+                <div class="section-videos-wrapper-controls-seek-bar">
+                    <div class="section-videos-wrapper-controls-seek-bar--fill"></div>
+                </div>
+                <button class="section-videos-wrapper-controls-volume">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="22.1px" height="16.8px" viewBox="0 0 22.1 16.8" style="enable-background:new 0 0 22.1 16.8;" xml:space="preserve"> <polygon class="st0" points="4.7,5.4 0.5,5.4 0.5,11.4 4.7,11.4 11.4,16.3 11.4,0.5 	"/> <line class="st0" x1="14.4" y1="4.8" x2="21.6" y2="12"/> <line class="st0" x1="14.4" y1="12" x2="21.6" y2="4.8"/> </svg>
+                </button>
+            </div>
+        </div>
+        <div class="section-videos-nav">
+
+        </div>
+    </section>
+    <section class="section section-about">
+        <h2 class="section-about--title section--title">
+            about jr
+        </h2>
+        <div class="section-about-wrapper">
+            <div class="section-about-wrapper-content">
+                Born in France on February 22, 1983, JR was just another average teenager with a passion for graffiti. He lived graffiti and truly enjoyed the movement. His graffiti moniker was Face 3.
+                <br/>
+                <br/>
+                However, it was not until he found a camera on the subway that his perception on street art change. This allowed him to track the individuals who communicate messages via walls and street art. He quickly began to track people in the forbidden undergrounds and roofs of Paris, France. In 2004, street artist JR photographed the riots that broke out in the banlieues and created his first major project by pasting up large prints of their faces around the city.
+                <a href="#" class="section-about-wrapper--link">
+                    Read more
+                </a>
+            </div>
+            <div class="section-about-wrapper-img" style="background-image:url(<?php echo IMAGES_URL ?>'/JR-about.jpg')"></div>
+        </div>
+        <div class="section-about-social">
+            <a href="<?php the_field('section_1_instagram_link') ?>" target="_blank" class="section-about-social--link">
+		        <?php the_field('section_1_instagram_text') ?>
+            </a>
+            <a href="<?php the_field('section_1_twitter_link') ?>" target="_blank" class="section-about-social--link">
+		        <?php the_field('section_1_twitter_text') ?>
+            </a>
+        </div>
+    </section>
 </main>
 <?php get_footer(); ?>

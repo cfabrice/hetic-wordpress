@@ -12,6 +12,7 @@ define( 'THEME_PATH' ,          get_template_directory()            );
 define( 'THEME_URL' ,           get_template_directory_uri()        );
 define( 'CSS_URL' ,             THEME_URL .    '/assets/css'       );
 define( 'IMAGES_URL' ,          THEME_URL .    '/assets/img'       );
+define( 'VIDEOS_URL' ,          THEME_URL .    '/assets/video'       );
 define( 'JS_URL' ,              THEME_URL .    '/assets/js'      );
 //define( 'FAVICONS_URL' ,        THEME_URL .    '/dist/favicon'      );
 //define( 'ADMIN_IMAGES_URL' ,    IMAGES_URL .   '/admin'             );
