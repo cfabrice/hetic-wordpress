@@ -1,0 +1,81 @@
+.section-about
+  // background red
+  &-wrapper
+    margin-top 40px
+    width 100%
+    height 100%
+    background $grey
+    @media screen and (min-width: $laptop)
+      display flex
+      flex-direction row
+      position relative      
+    &-content
+      width 100%
+      height 100%
+      padding 10vw
+      color $white
+      font-family 'Alegreya Sans SC', sans-serif
+      font-weight 300
+      line-height 30px
+      font-size 20px
+      @media screen and (min-width: $laptop)
+        text-align justify            
+        width calc(50vw + 40px)
+        padding 5vw 10vw 25px 10vw
+    &--link
+      display block
+      background $white
+      border-radius 3px
+      margin-top 10vw
+      color $grey
+      width 100%
+      height 70px
+      line-height 70px
+      text-align left
+      padding-left 5vw
+      font-size 20px
+      font-weight 500
+      font-family 'Raleway', sans-serif
+      @media screen and (min-width: $laptop)
+        width 100%
+        max-width 340px
+        padding-left 2vw
+        margin 0
+        margin-top 30px
+    &-img
+      width 90vw
+      height 90vw
+      margin 0 auto
+      background-size cover
+      @media screen and (min-width: $laptop)
+        width calc(50vw - 40px)
+        position absolute
+        bottom 0
+        top -85px
+        right 0
+        height auto
+        background-size cover
+        background-position center center
+  &-social
+    width 100%
+    height 60px
+    background $grey
+    display flex
+    flex-direction row
+    // justify-content center
+    align-items center
+    @media screen and (min-width: $laptop)
+      padding-left 10vw
+    &--link
+      display block
+      height 100%
+      line-height 60px
+      color $white
+      opacity .5
+      text-transform uppercase
+      font-size 12px
+      margin auto
+      @media screen and (min-width: $laptop)
+        margin 0
+        margin-right 50px
+        

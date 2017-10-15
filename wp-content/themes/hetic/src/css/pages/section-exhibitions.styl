@@ -45,10 +45,8 @@
             max-width 60vh
             max-height 60vh
             background-size cover
+            background-position center center
             flex-shrink 0
-            // background pink            
-            // &:nth-child(2n)
-            //   background tomato
             @media screen and (min-width: $laptop)
               width 100%
               height 100%
@@ -100,7 +98,7 @@
       width calc(100% - 10vw)
       height auto
       margin 0 5vw
-      border 1px solid $yellow
+      border 2px solid $yellow
       padding 5vw
       flex-shrink 0
       @media screen and (min-width: $laptop)
@@ -127,6 +125,7 @@
               opacity 0.5
             &--title
               font-size 28px
+              font-family 'Alegreya Sans SC', sans-serif
               color $black
               text-transform uppercase
               margin 20px 0 25px 0
