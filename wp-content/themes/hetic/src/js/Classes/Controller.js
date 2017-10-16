@@ -5,11 +5,11 @@ class Controller{
     this.video         = this.container.querySelector('.section-videos-wrapper-video')
     this.seek_bar      = this.container.querySelector('.section-videos-wrapper-controls-seek-bar')
     this.seek_bar_fill = this.seek_bar.querySelector('.section-videos-wrapper-controls-seek-bar--fill')
-    this.time_current  = this.container.querySelector('.section-videos-wrapper-controls-time-current')
-    this.time_duration = this.container.querySelector('.section-videos-wrapper-controls-time-duration')
-    this.time_drag     = false    
-    this.video.volume = 0
-    
+    this.time_current  = this.container.querySelector('.section-videos-wrapper-controls--time-current')
+    this.time_duration = this.container.querySelector('.section-videos-wrapper-controls--time-duration')
+    this.time_drag     = false
+    this.button_volume = this.container.querySelector('.section-videos-wrapper-controls-volume--icon')
+    this.button_fullscreen = this.container.querySelector('.section-videos-wrapper-controls--fullscreen')    
 
     this.time_duration.textContent = this.video.duration    
 
@@ -45,12 +45,29 @@ class Controller{
         this.updateTime(e)
       }
     })
+
+    this.button_volume.addEventListener('click', () =>{
+      if(this.video.muted){
+        this.video.muted = false
+        this.button_volume.classList.remove('mute')
+      }
+      else{
+        this.video.muted = true
+        this.button_volume.classList.add('mute')        
+      }
+    })
+
+
+    this.button_fullscreen.addEventListener('click', ()=>{
+      this.toggleFullscreen()
+    })
   }
 
   // init new video
   init(){
     this.video.addEventListener('loadeddata', () =>{
       this.video.pause()
+      this.video.volume = .5    
       this.video.currentTime = 0
       this.time_duration.textContent = this.formatTime(this.video.duration)   
       this.time_current.textContent = this.formatTime(this.video.currentTime)       
@@ -77,7 +94,38 @@ class Controller{
     let ratio = (e.pageX - this.container_positions.left) / this.container_positions.width
     this.seek_bar_fill.style.transform = 'scaleX('+ ratio +')'
     this.video.currentTime = ratio * this.video.duration
-    this.time_current.textContent = this.formatTime(this.video.currentTime)    
+    this.time_current.textContent = this.formatTime(this.video.currentTime)
+  }
+
+  toggleFullscreen(){
+    if(document.fullscreenElement == null && document.mozFullscreenElement == null && document.webkitFullscreenElement == null && document.msFullscreenElement== null ){
+      if(this.container.requestFullscreen){
+        this.container.requestFullscreen()
+      }
+      else if(this.container.mozRequestFullScreen){
+        this.container.mozRequestFullScreen()
+      }
+      else if(this.container.webkitRequestFullscreen){
+        this.container.webkitRequestFullscreen()
+      }
+      else if(this.container.msRequestFullscreen){
+        this.container.msRequestFullscreen()
+      }
+    }
+    else{
+      if(document.exitFullscreen){
+        document.exitFullscreen()
+      }
+      else if(document.mozExitFullScreen){
+        document.mozExitFullScreen()
+      }
+      else if(document.webkitExitFullscreen){
+        document.webkitExitFullscreen()
+      }
+      else if(document.msExitFullscreen){
+        document.msExitFullscreen()
+      }
+    }
   }
 
 
