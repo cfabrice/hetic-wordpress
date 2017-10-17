@@ -8,28 +8,14 @@ var scrapper = nightmare.goto(url)
                         .wait()
 						.evaluate(function(){
                             const img = document.querySelector('body > span > section > main > article > div > div > div > div > a > div > div > img')
+                            const link = document.querySelector('body > span > section > main > article > div > div > div > div > a')
                             let src = img.src.split('/').pop()
-
-                            var today = new Date();
-                            var dd = today.getDate();
-                            var mm = today.getMonth()+1; //January is 0!
-                            var yyyy = today.getFullYear();
-                            
-                            if(dd<10) {
-                                dd = '0'+dd
-                            } 
-                            
-                            if(mm<10) {
-                                mm = '0'+mm
-                            } 
-                            
-                            today = dd + '/' + mm + '/' + yyyy;
 
 
                             return {
                                 src,
                                 desc : img.alt,
-                                date : today
+                                link : link.href
                             };
                         })
                         .end()
