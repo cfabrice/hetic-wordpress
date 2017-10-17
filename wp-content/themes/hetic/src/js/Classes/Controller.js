@@ -3,33 +3,37 @@ class Controller{
     this.container     = container
     this.button_toggle = this.container.querySelector('.section-videos-wrapper-controls--toggle')
     this.video         = this.container.querySelector('.section-videos-wrapper-video')
-    this.seek_bar      = this.container.querySelector('.section-videos-wrapper-controls-seek-bar')
-    this.seek_bar_fill = this.seek_bar.querySelector('.section-videos-wrapper-controls-seek-bar--fill')
+    
+    this.time_seek_bar      = this.container.querySelector('.section-videos-wrapper-controls-seek-bar')
+    this.time_seek_bar_fill = this.time_seek_bar.querySelector('.section-videos-wrapper-controls-seek-bar--fill')
+    this.time_drag = false
+
     this.time_current  = this.container.querySelector('.section-videos-wrapper-controls--time-current')
     this.time_duration = this.container.querySelector('.section-videos-wrapper-controls--time-duration')
-    this.time_drag     = false
+    
     this.button_volume = this.container.querySelector('.section-videos-wrapper-controls-volume--icon')
-    this.button_fullscreen = this.container.querySelector('.section-videos-wrapper-controls--fullscreen')    
+    this.volume_seek_bar      = this.container.querySelector('.section-videos-wrapper-controls-volume--bar')
+    this.volume_seek_bar_fill = this.container.querySelector('.section-videos-wrapper-controls-volume--bar-fill')
+    this.volume_drag = false
 
-    this.time_duration.textContent = this.video.duration    
+    this.effect_pause = this.container.querySelector('.section-videos-wrapper-effect-pause')
+    this.effect_play  = this.container.querySelector('.section-videos-wrapper-effect-play')
+    
+    this.button_fullscreen = this.container.querySelector('.section-videos-wrapper-controls--fullscreen')
 
     this.button_toggle.addEventListener('click', ()=>{
       this.toggleState()
     })
 
-    this.seek_bar.addEventListener('click', (e)=>{
-      this.container_positions = this.seek_bar.getBoundingClientRect()
+    this.time_seek_bar.addEventListener('click', (e)=>{
+      this.time_positions = this.time_seek_bar.getBoundingClientRect()
       
       this.updateTime(e)
-
-      // if(this.video.paused){
-      //   this.toggleState()
-      // }
     })
 
-    this.seek_bar.addEventListener('mousedown', ()=>{
+    this.time_seek_bar.addEventListener('mousedown', ()=>{
       if(!this.time_drag){
-        this.container_positions = this.seek_bar.getBoundingClientRect()      
+        this.time_positions = this.time_seek_bar.getBoundingClientRect()      
         this.time_drag = true
       }
     })
@@ -38,28 +42,55 @@ class Controller{
       if(this.time_drag){
         this.time_drag = false
       }
+
+      if(this.volume_drag){
+        this.volume_drag = false
+      }
     })
 
     window.addEventListener('mousemove', (e)=>{
       if(this.time_drag){
         this.updateTime(e)
       }
+      if(this.volume_drag){
+        this.updateVolume(e)        
+      }
     })
 
     this.button_volume.addEventListener('click', () =>{
-      if(this.video.muted){
-        this.video.muted = false
-        this.button_volume.classList.remove('mute')
-      }
-      else{
-        this.video.muted = true
-        this.button_volume.classList.add('mute')        
+      this.toggleMute()
+    })
+
+    this.volume_seek_bar.addEventListener('click', (e) =>{
+      this.volume_positions = this.volume_seek_bar.getBoundingClientRect()
+      this.updateVolume(e)
+    })
+
+    this.volume_seek_bar.addEventListener('mousedown', ()=>{
+      if(!this.volume_drag){
+        this.volume_positions = this.volume_seek_bar.getBoundingClientRect()      
+        this.volume_drag = true
       }
     })
 
-
     this.button_fullscreen.addEventListener('click', ()=>{
       this.toggleFullscreen()
+    })
+
+    this.video.addEventListener('dblclick', ()=>{
+      this.toggleFullscreen()      
+    })
+
+    this.video.addEventListener('click', ()=>{
+      this.toggleState()
+      if(this.video.paused){
+        this.effect_play.classList.add('active')
+        this.effect_pause.classList.remove('active')
+      }
+      else{
+        this.effect_pause.classList.add('active')
+        this.effect_play.classList.remove('active')        
+      }
     })
   }
 
@@ -67,12 +98,11 @@ class Controller{
   init(){
     this.video.addEventListener('loadeddata', () =>{
       this.video.pause()
-      this.video.volume = .5    
       this.video.currentTime = 0
       this.time_duration.textContent = this.formatTime(this.video.duration)   
       this.time_current.textContent = this.formatTime(this.video.currentTime)       
       
-      this.seek_bar_fill.style.transform = 'scaleX(0)'    
+      this.time_seek_bar_fill.style.transform = 'scaleX(0)'    
     })    
   }
 
@@ -88,13 +118,59 @@ class Controller{
       this.video.pause()
       this.container.classList.remove('playing')
     }
+    this.effect_pause.classList.remove('active')
+    this.effect_play.classList.remove('active')
   }
 
   updateTime(e){
-    let ratio = (e.pageX - this.container_positions.left) / this.container_positions.width
-    this.seek_bar_fill.style.transform = 'scaleX('+ ratio +')'
+    let ratio = (e.pageX - this.time_positions.left) / this.time_positions.width
+    this.time_seek_bar_fill.style.transform = 'scaleX('+ ratio +')'
     this.video.currentTime = ratio * this.video.duration
     this.time_current.textContent = this.formatTime(this.video.currentTime)
+  }
+
+  updateVolume(e){
+    let ratio = (e.pageX - this.volume_positions.left) / this.volume_positions.width
+    this.video.volume = ratio
+    this.volume_seek_bar_fill.style.transform = 'scaleX('+ ratio +')'    
+    if(this.video.muted){
+      this.toggleMute()
+    }
+
+    if(ratio >= .5){
+      this.button_volume.classList.add('volume-2')
+      this.button_volume.classList.remove('volume-1')
+      this.button_volume.classList.remove('volume-0')
+    }
+    else if(ratio < .5 && ratio >= .25){
+      this.button_volume.classList.remove('volume-2')
+      this.button_volume.classList.add('volume-1')
+      this.button_volume.classList.remove('volume-0')
+    }
+    else if(ratio < .25){
+      this.button_volume.classList.remove('volume-2')
+      this.button_volume.classList.remove('volume-1')
+      this.button_volume.classList.add('volume-0')
+    }
+    else if(ratio <= 0){
+      this.button_volume.classList.remove('volume-2')
+      this.button_volume.classList.remove('volume-1')
+      this.button_volume.classList.remove('volume-0')
+      this.toggleMute()
+    }
+  }
+
+  toggleMute(){
+    if(this.video.muted){
+      this.video.muted = false
+      this.button_volume.classList.remove('mute')
+      this.volume_seek_bar_fill.style.transform = 'scaleX('+ this.video.volume +')'          
+    }
+    else{
+      this.video.muted = true
+      this.button_volume.classList.add('mute')
+      this.volume_seek_bar_fill.style.transform = 'scaleX(0)'    
+    }
   }
 
   toggleFullscreen(){
@@ -136,7 +212,7 @@ class Controller{
     }
 
     let ratio = this.video.currentTime / this.video.duration
-    this.seek_bar_fill.style.transform = 'scaleX('+ ratio +')'
+    this.time_seek_bar_fill.style.transform = 'scaleX('+ ratio +')'
 
     this.time_current.textContent = this.formatTime(this.video.currentTime)
     

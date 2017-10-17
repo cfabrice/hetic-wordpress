@@ -1,8 +1,5 @@
 .section-videos
   width 100%
-  height auto
-  // padding-bottom 140px
-  // margin-bottom 40px
   &-wrapper
     margin-top 40px
     width 100%
@@ -22,19 +19,27 @@
       backface-visibility hidden
       &::-internal-media-controls-download-button
         display none
-    &-title
-      font-family 'Alegreya Sans SC', sans-serif
-      text-transform uppercase
-      font-size 16px
-      width auto
-      padding 5px 10px
-      background rgba(0,0,0,.5)
+    &-effect
+      width 120px
+      height 120px
+      background rgba(0,0,0,.4)
       position absolute
-      color $white
-      bottom 40px
-      left 0
+      left calc(50% - 60px)
+      top calc(50% - 60px)
+      display flex
+      border-radius 50%
+      display none
+      pointer-events none
+      &.active
+        display block
+        animation effect .45s ease-in-out forwards
+      svg
+        margin auto
+        width 100%
+        height 100%
+        transform scale(.5)
     &-controls
-      background rgba(0,0,0,.5)
+      background linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.5) 100%)
       width 100%
       height 40px
       position absolute
@@ -111,19 +116,22 @@
           .icon
             d path('M8 5v14l11-7z')
       &-seek-bar
-        width 100%
+        width calc(100% - 40px)
         height 4px
         background rgba(255,255,255,.2)
         position absolute
-        top 0
-        left 0
+        top -5px
+        left 20px
         cursor pointer
         backface-visibility hidden
+        background-clip padding-box
+        box-sizing content-box
+        border-top 5px solid transparent
+        border-bottom 5px solid transparent
         &--fill
           width 100%
           height 100%
           background $yellow
-          // opacity .5
           transform-origin 0% 50%
           transform scaleX(0)
           backface-visibility hidden
@@ -147,6 +155,7 @@
       &-volume
         margin-top 4px
         height 36px
+        width 36px
         background none
         border none
         outline none
@@ -156,7 +165,11 @@
         flex-wrap nowrap
         margin-left auto
         margin-right 15px
+        @media screen and (min-width: $laptop)
+          margin-left 15px
+          transition all .2s ease-in-out          
         &--icon
+          flex-shrink 0
           width 36px
           height 36px
           background none
@@ -166,29 +179,49 @@
           padding 0
           display flex
           opacity .7
-          transition opacity .3s ease          
-          &:hover
-            opacity 1
+          transition opacity .3s ease
           svg
             width 24px
             height 24px
             margin auto
-          &.mute .icon
-            d path('M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z')
           &.volume-0 .icon
             d path('M7 9v6h4l5 5V4l-5 5H7z')
           &.volume-1 .icon
             d path('M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z')
           &.volume-2 .icon
             d path('M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z')
+          &.mute .icon
+            d path('M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z')
         &--bar
-          width 100px
-          height 36px
-          background blue
-          display none
-
+          flex-shrink 0
+          width 65px
+          height 4px
+          margin auto 0
+          background rgba(255,255,255,.2)
+          transition all .2s ease-in-out
+          transform-origin 0 50%
+          transform scaleX(0)
+          background-clip padding-box
+          box-sizing content-box
+          border-top 5px solid transparent
+          border-bottom 5px solid transparent     
+          overflow hidden
+          @media screen and (min-width: $laptop)
+            display block
+          &-fill
+            width 100%
+            height 100%
+            background $white
+            transform-origin 0 50%
+        &:hover
+          .section-videos-wrapper-controls-volume--icon
+            opacity 1
+          @media screen and (min-width: $laptop)
+            width 111px
+            .section-videos-wrapper-controls-volume--bar
+              transform scaleX(1)
+              
   &-nav
     width 100%
     height 150px
     background blue
-    position relative

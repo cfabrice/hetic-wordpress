@@ -14,13 +14,13 @@
       height calc(100vw + 80px)
       max-height calc(60vh  + 80px)
       @media screen and (min-width: $laptop)
-        width calc(50vw + 10vw)
+        width calc(50% + 10%)
         height auto
         max-height inherit 
         display flex
         flex-direction row
       &-wrapper
-        width 100vw
+        width 100%
         height 100vw
         max-width 60vh
         max-height 60vh
@@ -40,7 +40,7 @@
           width 100%
           height 100%   
           &--item
-            width 100vw
+            width 100%
             height 100vw
             max-width 60vh
             max-height 60vh
@@ -59,9 +59,9 @@
         margin 0 auto
         overflow hidden
         @media screen and (min-width: $laptop)
-          width 15vw
+          width 15%
           height 100%
-          margin 0
+          margin 0 auto
         &-list
           width auto
           height 100%
@@ -102,9 +102,10 @@
       padding 5vw
       flex-shrink 0
       @media screen and (min-width: $laptop)
-        width calc(50vw - 10vw)
+        width calc(50% - 10%)
         margin 0
-        padding 2vw 5vw
+        padding 2% 5%
+        border-right none
       &-wrapper
         width 100%
         height auto
