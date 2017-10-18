@@ -240,34 +240,72 @@
       See all exhibitions
     </a>
   </section>
-    <section class="section section-videos">
-        <h2 class="section-videos--title section--title">
-            videos
-        </h2>
-        <div class="section-videos-wrapper">
-            <video class="section-videos-wrapper-video" src="<?php echo VIDEOS_URL; ?>/JR-video-1.mp4"></video>
-            <div class="section-videos-wrapper-controls">
-                <button class="section-videos-wrapper-controls--toggle">
-            <span class="section-videos-wrapper-controls--toggle-play">
-              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="12.3px" height="14px" viewBox="0 0 12.3 14" style="enable-background:new 0 0 12.3 14;" xml:space="preserve"><polygon class="st0" points="11.8,7 0.5,0.5 0.5,13.5 "/></svg>
-            </span>
-                    <span class="section-videos-wrapper-controls--toggle-pause">
-              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="14.8px" height="14px" viewBox="0 0 14.8 14" style="enable-background:new 0 0 14.8 14;" xml:space="preserve"> <rect x="0.5" y="0.5" class="st0" width="5" height="13"/> <rect x="9.3" y="0.5" class="st0" width="5" height="13"/> </svg>
-            </span>
-                </button>
-                <div class="section-videos-wrapper-controls-time section-videos-wrapper-controls-time-current">00:00</div>
-                <div class="section-videos-wrapper-controls-time section-videos-wrapper-controls-time-duration">00:00</div>
-                <div class="section-videos-wrapper-controls-seek-bar">
-                    <div class="section-videos-wrapper-controls-seek-bar--fill"></div>
-                </div>
-                <button class="section-videos-wrapper-controls-volume">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="22.1px" height="16.8px" viewBox="0 0 22.1 16.8" style="enable-background:new 0 0 22.1 16.8;" xml:space="preserve"> <polygon class="st0" points="4.7,5.4 0.5,5.4 0.5,11.4 4.7,11.4 11.4,16.3 11.4,0.5 	"/> <line class="st0" x1="14.4" y1="4.8" x2="21.6" y2="12"/> <line class="st0" x1="14.4" y1="12" x2="21.6" y2="4.8"/> </svg>
-                </button>
+  <section class="section section-videos">
+      <h2 class="section-videos--title section--title">
+        videos
+      </h2>
+      <div class="section-videos-wrapper">
+        <div class="section-videos-wrapper-effect section-videos-wrapper-effect-play">
+          <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M8 5v14l11-7z" class="icon"/>
+          </svg>
+        </div>
+        <div class="section-videos-wrapper-effect section-videos-wrapper-effect-pause">
+          <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" class="icon"/>
+          </svg>
+        </div>
+        <video class="section-videos-wrapper-video" src="<?php echo VIDEOS_URL; ?>/JR-video-1.mp4" controlsList="nodownload"></video>
+        <button class="section-videos-wrapper-controls--fullscreen">
+          <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" class="icon"/>
+          </svg>
+        </button>
+        <div class="section-videos-wrapper-controls">
+          <button class="section-videos-wrapper-controls--skip section-videos-wrapper-controls--skip-prev hide">
+            <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" class="icon"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          </button>
+          <button class="section-videos-wrapper-controls--toggle">
+            <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 5v14l11-7z" class="icon"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          </button>
+          <button class="section-videos-wrapper-controls--skip section-videos-wrapper-controls--skip-next">
+            <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" class="icon"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          </button>
+          <div class="section-videos-wrapper-controls--time section-videos-wrapper-controls--time-current">00:00</div>
+          <span class="section-videos-wrapper-controls--time section-videos-wrapper-controls--time-separation">/</span>
+          <div class="section-videos-wrapper-controls--time section-videos-wrapper-controls--time-duration">00:00</div>
+          <div class="section-videos-wrapper-controls-seek-bar">
+            <div class="section-videos-wrapper-controls-seek-bar--fill"></div>
+          </div>
+          <div class="section-videos-wrapper-controls-volume">
+            <button class="section-videos-wrapper-controls-volume--icon">
+              <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z" class="icon"/>
+                <path d="M0 0h24v24H0z" fill="none"/>
+              </svg>
+            </button>
+            <div class="section-videos-wrapper-controls-volume--bar">
+              <div class="section-videos-wrapper-controls-volume--bar-fill">                
             </div>
+          </div>
         </div>
-        <div class="section-videos-nav">
+      </div>
+    </div>
+      <div class="section-videos-nav">
 
-        </div>
+      </div>
     </section>
     <section class="section section-about">
         <h2 class="section-about--title section--title">
