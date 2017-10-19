@@ -21,6 +21,13 @@ class Controller{
     
     this.button_fullscreen = this.container.querySelector('.section-videos-wrapper-controls--fullscreen')
 
+    this.container_playlist  = document.querySelector('.section-videos-nav-wrapper-list')
+    this.playlist_items      = document.querySelectorAll('.section-videos-nav-wrapper-list-item')
+    this.playlist_next       = document.querySelector('.section-videos-nav-controls--next')
+    this.playlist_prev       = document.querySelector('.section-videos-nav-controls--prev')
+    this.playlist_index      = 0
+    this.playlist_item_width = this.playlist_items[0].getBoundingClientRect().width + 20
+
     this.button_toggle.addEventListener('click', ()=>{
       this.toggleState()
     })
@@ -91,6 +98,37 @@ class Controller{
         this.effect_pause.classList.add('active')
         this.effect_play.classList.remove('active')        
       }
+    })
+
+    this.playlist_next.addEventListener('click', ()=>{
+      if(this.playlist_index < this.playlist_items.length - 5){
+        this.playlist_index++
+        console.log(this.playlist_index)
+        console.log('next')
+        this.updatePlaylist()
+        this.playlist_prev.classList.remove('hide')
+        if(this.playlist_index  == this.playlist_items.length - 5){
+          this.playlist_next.classList.add('hide')          
+        }
+      }
+    })
+
+    this.playlist_prev.addEventListener('click', ()=>{
+      if(this.playlist_index > 0){
+        this.playlist_index--
+        console.log(this.playlist_index)        
+        console.log('prev')
+        this.updatePlaylist()
+        this.playlist_next.classList.remove('hide') 
+        if(this.playlist_index == 0){
+          this.playlist_prev.classList.add('hide')          
+        }     
+      }
+    })
+
+    window.addEventListener('resize', ()=>{
+      this.playlist_item_width = this.playlist_items[0].getBoundingClientRect().width + 20      
+      this.updatePlaylist()
     })
   }
 
@@ -204,6 +242,11 @@ class Controller{
     }
   }
 
+  //playlist
+  updatePlaylist(){
+    this.container_playlist.style.transform = 'translateX(-'+ (this.playlist_index * this.playlist_item_width) +'px)'
+  }  
+
 
   //render func
   render(){
@@ -241,7 +284,3 @@ class Controller{
     }
   }
 }
-
-const controller = new Controller(document.querySelector('.section-videos-wrapper'))
-controller.init()
-console.log(controller)
