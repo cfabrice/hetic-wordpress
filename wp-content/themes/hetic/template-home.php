@@ -117,7 +117,7 @@
             Discover more projects
         </a>
     </section>
-    <?php                                                                                                         } ?>
+    <?php } ?>
     <section class="section section-exhibitions">
     <div class="section-exhibitions--title section--title">
       exhibitions
@@ -348,19 +348,17 @@
     </section>
     <section class="section section-about">
         <h2 class="section-about--title section--title">
-            about jr
+           <?php the_field('section_about_title') ?>
         </h2>
         <div class="section-about-wrapper">
             <div class="section-about-wrapper-content">
-                Born in France on February 22, 1983, JR was just another average teenager with a passion for graffiti. He lived graffiti and truly enjoyed the movement. His graffiti moniker was Face 3.
-                <br/>
-                <br/>
-                However, it was not until he found a camera on the subway that his perception on street art change. This allowed him to track the individuals who communicate messages via walls and street art. He quickly began to track people in the forbidden undergrounds and roofs of Paris, France. In 2004, street artist JR photographed the riots that broke out in the banlieues and created his first major project by pasting up large prints of their faces around the city.
+                <?php the_field('section_about_content') ?> 
                 <a href="<?php echo get_page_link( get_page_by_title( 'jr' )->ID ); ?>" class="section-about-wrapper--link">
-                    Read more
+                    <?php the_field('section_about_link') ?>
                 </a>
             </div>
-            <div class="section-about-wrapper-img" style="background-image:url('<?php echo IMAGES_URL ?>/JR-about.jpg')"></div>
+            <?php $image = get_field( 'section_about_photo' ); ?>
+            <div class="section-about-wrapper-img" style="background-image:url('<?php echo $image['url']; ?>"></div>
         </div>
         <div class="section-about-social">
             <a href="<?php the_field('section_1_instagram_link') ?>" target="_blank" class="section-about-social--link">

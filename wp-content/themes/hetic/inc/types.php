@@ -35,12 +35,3 @@ function add_video_type_init() {
 	register_post_type( 'videos', $args );
 }
 add_action( 'init', 'add_video_type_init' );
-
-function add_jr_type_init() {
-	$args = array(
-		'public' => true,
-		'label'  => 'JR'
-	);
-	register_post_type( 'jr', $args );
-}
-add_action( 'init', 'add_jr_type_init' );
