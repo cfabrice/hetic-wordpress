@@ -6,7 +6,23 @@
     height (100vw / 1.78)
     position relative
     background #000000
-    overflow hidden
+    // overflow hidden
+    @media screen and (min-width: $laptop)
+      margin 40px auto 0 auto
+      width 70vw
+      height (70vw / 1.78)
+      &::before
+        content ""
+        position absolute
+        background #000
+        top 0
+        left -15vw
+        width 100vw
+        height 100%
+        z-index -1
+    &:fullscreen
+      width 100%
+      height (100vw / 1.78)
     &.playing
       .section-videos-wrapper-video  
       .section-videos-wrapper-controls
