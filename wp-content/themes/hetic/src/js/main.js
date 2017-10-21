@@ -38,7 +38,5 @@ for (var i = 0; i < exhibitions_buttons_item.length; i++) {
   })
 }
 
-const controller = new Controller(document.querySelector('.section-videos-wrapper'))
-controller.init()
-
-console.log(controller)
+const player = new Player(document.querySelector('.section-videos-wrapper'), true)
+console.log(player)

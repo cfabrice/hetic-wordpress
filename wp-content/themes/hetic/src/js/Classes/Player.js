@@ -1,12 +1,12 @@
-class Controller{
-  constructor(container){
+class Player{
+  constructor(container, playlist = false){
     this.container     = container
     this.button_toggle = this.container.querySelector('.section-videos-wrapper-controls--toggle')
     this.video         = this.container.querySelector('.section-videos-wrapper-video')
     
     this.time_seek_bar      = this.container.querySelector('.section-videos-wrapper-controls-seek-bar')
     this.time_seek_bar_fill = this.time_seek_bar.querySelector('.section-videos-wrapper-controls-seek-bar--fill')
-    this.time_drag = false
+    this.time_drag          = false
 
     this.time_current  = this.container.querySelector('.section-videos-wrapper-controls--time-current')
     this.time_duration = this.container.querySelector('.section-videos-wrapper-controls--time-duration')
@@ -20,13 +20,6 @@ class Controller{
     this.effect_play  = this.container.querySelector('.section-videos-wrapper-effect-play')
     
     this.button_fullscreen = this.container.querySelector('.section-videos-wrapper-controls--fullscreen')
-
-    this.container_playlist  = document.querySelector('.section-videos-nav-wrapper-list')
-    this.playlist_items      = document.querySelectorAll('.section-videos-nav-wrapper-list-item')
-    this.playlist_next       = document.querySelector('.section-videos-nav-controls--next')
-    this.playlist_prev       = document.querySelector('.section-videos-nav-controls--prev')
-    this.playlist_index      = 0
-    this.playlist_item_width = this.playlist_items[0].getBoundingClientRect().width + 20
 
     this.button_toggle.addEventListener('click', ()=>{
       this.toggleState()
@@ -96,52 +89,131 @@ class Controller{
       }
       else{
         this.effect_pause.classList.add('active')
-        this.effect_play.classList.remove('active')        
+        this.effect_play.classList.remove('active')
       }
     })
 
-    this.playlist_next.addEventListener('click', ()=>{
-      if(this.playlist_index < this.playlist_items.length - 5){
-        this.playlist_index++
-        console.log(this.playlist_index)
-        console.log('next')
-        this.updatePlaylist()
-        this.playlist_prev.classList.remove('hide')
-        if(this.playlist_index  == this.playlist_items.length - 5){
-          this.playlist_next.classList.add('hide')          
+    this.playlist = playlist    
+    if(this.playlist){
+      this.container_playlist  = document.querySelector('.section-videos-nav-wrapper-list')
+      this.playlist_items      = document.querySelectorAll('.section-videos-nav-wrapper-list-item')
+      this.playlist_next       = document.querySelector('.section-videos-nav-controls--next')
+      this.playlist_prev       = document.querySelector('.section-videos-nav-controls--prev')
+      this.playlist_index      = 0
+      this.playlist_selected   = this.playlist_items[this.playlist_index]
+      this.playlist_item_width = this.playlist_items[0].getBoundingClientRect().width + 20
+      
+      this.video_index   = 0
+      this.video_prev    = this.container.querySelector('.section-videos-wrapper-controls--skip-prev')
+      this.video_next    = this.container.querySelector('.section-videos-wrapper-controls--skip-next')
+
+      this.playlist_next.addEventListener('click', ()=>{
+        if(this.playlist_index < this.playlist_items.length - this.playlist_size){
+          this.playlist_index++
+          this.updatePlaylist()
         }
-      }
-    })
+      })
 
-    this.playlist_prev.addEventListener('click', ()=>{
-      if(this.playlist_index > 0){
-        this.playlist_index--
-        console.log(this.playlist_index)        
-        console.log('prev')
-        this.updatePlaylist()
-        this.playlist_next.classList.remove('hide') 
-        if(this.playlist_index == 0){
-          this.playlist_prev.classList.add('hide')          
-        }     
+      this.playlist_prev.addEventListener('click', ()=>{
+        if(this.playlist_index > 0){
+          this.playlist_index-- 
+          this.updatePlaylist()
+        }
+      })
+
+      for (var i = 0; i < this.playlist_items.length; i++) {
+        const self = this
+        this.playlist_items[i].addEventListener('click', function(){
+          if(this != self.playlist_selected){
+            self.video_index = Array.prototype.indexOf.call(self.playlist_items, this)
+            self.selectVideo()
+          }
+        })
       }
-    })
+
+      this.video_prev.addEventListener('click', ()=>{
+        if(this.video_index > 0){
+          this.video_index--
+          this.selectVideo()
+        }
+        else{
+          this.video_prev.classList.add('hide')
+          console.log('nop prev')
+        }
+        this.video_next.classList.remove('hide')  
+      })
+
+      this.video_next.addEventListener('click', ()=>{
+        if(this.video_index < this.playlist_items.length - 1){
+          this.video_index++
+          this.selectVideo()
+        }
+        else{
+          this.video_next.classList.add('hide')
+          console.log('nop next')
+        }
+        this.video_prev.classList.remove('hide')
+      })
+
+      this.video.addEventListener('ended', ()=>{
+        if(this.video_index < this.playlist_items.length - 1){
+          this.video_index++
+          this.selectVideo()
+        }
+      })
+
+      this.initPlaylist()
+    }
 
     window.addEventListener('resize', ()=>{
       this.playlist_item_width = this.playlist_items[0].getBoundingClientRect().width + 20      
-      this.updatePlaylist()
+      if(this.playlist){
+        console.log('resize')
+        this.initPlaylist()
+      }
     })
+
+    this.init()
+      
   }
 
   // init new video
   init(){
+    this.container.classList.remove('playing')
+    this.effect_pause.classList.remove('active')
+    this.effect_play.classList.remove('active')
     this.video.addEventListener('loadeddata', () =>{
-      this.video.pause()
-      this.video.currentTime = 0
+      this.video.currentTime = .45
       this.time_duration.textContent = this.formatTime(this.video.duration)   
       this.time_current.textContent = this.formatTime(this.video.currentTime)       
       
       this.time_seek_bar_fill.style.transform = 'scaleX(0)'    
     })    
+  }
+
+  initPlaylist(){
+    let width = window.innerWidth
+    if(width < 425){
+      this.playlist_size = 1
+    }
+    else if(width < 650){
+      this.playlist_size = 2
+    }
+    else if(width < 900){
+      this.playlist_size = 3
+    }
+    else if(width < 1300){
+      this.playlist_size = 5
+    }
+    else if(width < 2500){
+      this.playlist_size = 6
+    }
+    else{
+      this.playlist_size = 9      
+    }
+
+    this.playlist_index = 0    
+    this.updatePlaylist()
   }
 
 
@@ -162,39 +234,43 @@ class Controller{
 
   updateTime(e){
     let ratio = (e.pageX - this.time_positions.left) / this.time_positions.width
-    this.time_seek_bar_fill.style.transform = 'scaleX('+ ratio +')'
-    this.video.currentTime = ratio * this.video.duration
-    this.time_current.textContent = this.formatTime(this.video.currentTime)
+    if(ratio >= 0 && ratio < 1){      
+      this.time_seek_bar_fill.style.transform = 'scaleX('+ ratio +')'
+      this.video.currentTime = ratio * this.video.duration
+      this.time_current.textContent = this.formatTime(this.video.currentTime)
+    }
   }
 
   updateVolume(e){
     let ratio = (e.pageX - this.volume_positions.left) / this.volume_positions.width
-    this.video.volume = ratio
-    this.volume_seek_bar_fill.style.transform = 'scaleX('+ ratio +')'    
-    if(this.video.muted){
-      this.toggleMute()
-    }
+      if(ratio >= 0 && ratio < 1){
+      this.video.volume = ratio
+      this.volume_seek_bar_fill.style.transform = 'scaleX('+ ratio +')'    
+      if(this.video.muted){
+        this.toggleMute()
+      }
 
-    if(ratio >= .5){
-      this.button_volume.classList.add('volume-2')
-      this.button_volume.classList.remove('volume-1')
-      this.button_volume.classList.remove('volume-0')
-    }
-    else if(ratio < .5 && ratio >= .25){
-      this.button_volume.classList.remove('volume-2')
-      this.button_volume.classList.add('volume-1')
-      this.button_volume.classList.remove('volume-0')
-    }
-    else if(ratio < .25){
-      this.button_volume.classList.remove('volume-2')
-      this.button_volume.classList.remove('volume-1')
-      this.button_volume.classList.add('volume-0')
-    }
-    else if(ratio <= 0){
-      this.button_volume.classList.remove('volume-2')
-      this.button_volume.classList.remove('volume-1')
-      this.button_volume.classList.remove('volume-0')
-      this.toggleMute()
+      if(ratio >= .5){
+        this.button_volume.classList.add('volume-2')
+        this.button_volume.classList.remove('volume-1')
+        this.button_volume.classList.remove('volume-0')
+      }
+      else if(ratio < .5 && ratio >= .25){
+        this.button_volume.classList.remove('volume-2')
+        this.button_volume.classList.add('volume-1')
+        this.button_volume.classList.remove('volume-0')
+      }
+      else if(ratio < .25){
+        this.button_volume.classList.remove('volume-2')
+        this.button_volume.classList.remove('volume-1')
+        this.button_volume.classList.add('volume-0')
+      }
+      else if(ratio <= 0){
+        this.button_volume.classList.remove('volume-2')
+        this.button_volume.classList.remove('volume-1')
+        this.button_volume.classList.remove('volume-0')
+        this.toggleMute()
+      }
     }
   }
 
@@ -245,7 +321,54 @@ class Controller{
   //playlist
   updatePlaylist(){
     this.container_playlist.style.transform = 'translateX(-'+ (this.playlist_index * this.playlist_item_width) +'px)'
-  }  
+    
+    if(this.playlist_index == 0){
+      this.playlist_prev.classList.add('hide')          
+    }
+    else{
+      this.playlist_prev.classList.remove('hide')          
+    }
+
+    if(this.playlist_index  >= (this.playlist_items.length - this.playlist_size)){
+      this.playlist_next.classList.add('hide')       
+    }
+    else{
+      this.playlist_next.classList.remove('hide')    
+    }
+  }
+
+  selectVideo(){
+    this.playlist_selected.classList.remove('active')
+    this.playlist_selected = this.playlist_items[this.video_index]
+    this.playlist_selected.classList.add('active')
+
+    this.video.src = this.playlist_selected.dataset.target
+    this.init()
+
+    if(this.video_index > this.playlist_index + this.playlist_size - 1){
+      this.playlist_index++
+      this.updatePlaylist()
+    }
+    else if(this.video_index < this.playlist_index){
+      this.playlist_index--
+      this.updatePlaylist()      
+    }
+
+    if(this.video_index == 0){
+      this.video_prev.classList.add('hide')          
+    }
+    else{
+      this.video_prev.classList.remove('hide')          
+    }
+
+    if(this.video_index  >= (this.playlist_items.length - 1)){
+      this.video_next.classList.add('hide')       
+    }
+    else{
+      this.video_next.classList.remove('hide')    
+    }
+  }
+  
 
 
   //render func
