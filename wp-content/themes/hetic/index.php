@@ -1,6 +1,6 @@
 <?php get_header(); //appel du template header.php  ?>
 
-	<div id="content">
+	<main class="main" id="content">
 		<h1>Contenu Principal</h1>
 		<?php
 		// boucle WordPress
@@ -23,6 +23,6 @@
 		<?php endwhile; else: ?>
 			<p>Sorry, no posts matched your criteria.</p>
 		<?php endif; ?>
-	</div> <!-- /content -->
+	</main> <!-- /content -->
 
 <?php get_footer(); //appel du template footer.php ?>

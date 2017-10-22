@@ -12,7 +12,8 @@ add_action( 'init', 'add_project_type_init' );
 function add_news_type_init() {
 	$args = array(
 		'public' => true,
-		'label'  => 'News'
+		'label'  => 'News',
+		'has_archive' => false,
 	);
 	register_post_type( 'news', $args );
 }
@@ -26,12 +27,3 @@ function add_exhibitions_type_init() {
 	register_post_type( 'exhibitions', $args );
 }
 add_action( 'init', 'add_exhibitions_type_init' );
-
-function add_video_type_init() {
-	$args = array(
-		'public' => true,
-		'label'  => 'Vidéos'
-	);
-	register_post_type( 'videos', $args );
-}
-add_action( 'init', 'add_video_type_init' );
