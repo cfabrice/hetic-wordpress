@@ -290,7 +290,7 @@
             <div class="section-videos-wrapper-controls-seek-bar--fill"></div>
           </div>
           <div class="section-videos-wrapper-controls-volume">
-            <button class="section-videos-wrapper-controls-volume--icon">
+            <button class="section-videos-wrapper-controls-volume--icon volume-2">
               <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z" class="icon"/>
                 <path d="M0 0h24v24H0z" fill="none"/>
@@ -312,30 +312,20 @@
         </button>
         <div class="section-videos-nav-wrapper">
           <div class="section-videos-nav-wrapper-list">
-            <button data-target="./assets/video/JR-video-1.mp4" style="background-image:url('<?php echo IMAGES_URL; ?>/exhibitions-1.jpg')" class="section-videos-nav-wrapper-list-item active">
-              <span>The Standing March</span>
-            </button>
-            <button data-target="./assets/video/JR-video-1.mp4" style="background-image:url('<?php echo IMAGES_URL; ?>/exhibitions-1.jpg')" class="section-videos-nav-wrapper-list-item">
-              <span>The Standing March</span>
-            </button>
-            <button data-target="./assets/video/JR-video-1.mp4" style="background-image:url('<?php echo IMAGES_URL; ?>/exhibitions-1.jpg')" class="section-videos-nav-wrapper-list-item">
-              <span>The Standing March</span>
-            </button>
-            <button data-target="./assets/video/JR-video-1.mp4" style="background-image:url('<?php echo IMAGES_URL; ?>/exhibitions-1.jpg')" class="section-videos-nav-wrapper-list-item">
-              <span>The Standing March</span>
-            </button>
-            <button data-target="./assets/video/JR-video-1.mp4" style="background-image:url('<?php echo IMAGES_URL; ?>/exhibitions-1.jpg')" class="section-videos-nav-wrapper-list-item">
-              <span>The Standing March</span>
-            </button>
-            <button data-target="./assets/video/JR-video-1.mp4" style="background-image:url('<?php echo IMAGES_URL; ?>/exhibitions-1.jpg')" class="section-videos-nav-wrapper-list-item">
-              <span>The Standing March</span>
-            </button>
-            <button data-target="./assets/video/JR-video-1.mp4" style="background-image:url('<?php echo IMAGES_URL; ?>/exhibitions-1.jpg')" class="section-videos-nav-wrapper-list-item">
-              <span>The Standing March</span>
-            </button>
-            <button data-target="./assets/video/JR-video-1.mp4" style="background-image:url('<?php echo IMAGES_URL; ?>/exhibitions-1.jpg')" class="section-videos-nav-wrapper-list-item">
-              <span>The Standing March</span>
-            </button>
+	          <?php
+	          if (have_rows( 'videos' )) :
+		          while (have_rows( 'videos' )) :
+			          the_row();
+			          $video = get_sub_field( 'video' );
+			          ?>
+                      <button data-target="<?php echo $video['url']; ?>" style="background-image:url('<?php echo $video['url']; ?>')" class="section-videos-nav-wrapper-list-item">
+                          <span><?php echo $video['title']; ?></span>
+                      </button>
+              <?php
+		          endwhile;
+	          endif;
+
+	          ?>
           </div>
         </div>
         <button class="section-videos-nav-controls section-videos-nav-controls--next">

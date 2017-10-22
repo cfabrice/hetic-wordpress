@@ -1,3 +1,5 @@
+'use strict'
+
 var fs = require('fs'),
     Nightmare = require('nightmare');
 const {
@@ -9,7 +11,7 @@ var nightmare = Nightmare({
     show: false
 });
 var nightmare2 = Nightmare({
-    show: true
+    show: false
 });
 
 
@@ -19,7 +21,7 @@ function getImage() {
         .evaluate(function () {
             const img = document.querySelector('body > span > section > main > article > div > div > div > div > a > div > div > img')
             const link = document.querySelector('body > span > section > main > article > div > div > div > div > a')
-            const isVideo = document.querySelector('body > span > section > main > article > div > div > div > div > a').childElementCount > 1 ? true : false;
+            const isVideo = document.querySelector('body > span > section > main > article > div > div > div > div > a').childElementCount > 1;
             let src = img.src.split('/').pop()
 
             return {
@@ -38,13 +40,10 @@ function getImage() {
 }
 
 function getDate(file) {
-    console.log('getting date...');
-    console.log(file)
     nightmare2.goto(file.link)
         .wait()
         .evaluate(function () {
-            let photoTime = document.querySelector('time').getAttribute('datetime')
-            return photoTime
+            return document.querySelector('time').getAttribute('datetime');
         })
         .end()
         .then(function (photoTime) {
