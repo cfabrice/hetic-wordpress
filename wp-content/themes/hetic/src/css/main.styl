@@ -5,6 +5,7 @@ body,html
   font-weight 400
   overflow-x hidden
   cursor default
+  color $grey
   &::-webkit-scrollbar 
     width 5px
     background darken($white, 9%)
@@ -21,8 +22,7 @@ body,html
 *, *::after, *::before
   box-sizing: border-box
 
-h1, h2
-  font-family 'Raleway', sans-serif
+h1, h2, h3
   font-weight 400
 
 a 
@@ -34,7 +34,8 @@ a
   height auto
   position relative
   z-index 10
-  padding-top 40px
+  margin-top 80px
+
 
 .section
   padding-top 40px
@@ -118,3 +119,41 @@ a
   // stroke-width 1
   // stroke-linecap round
   // stroke-linejoin round
+
+
+.item-container
+  box-shadow 0 2px 2px 0 rgba(0, 0, 0, 0.24)
+  padding 5px 15px
+  @media screen and (min-width: $laptop)
+    width 700px      
+    margin 0 auto
+  .item-title
+    font-family 'Raleway', sans-serif
+    font-size 16px
+    font-weight 500
+    color $grey 
+    opacity .7
+    margin 5px 0
+  ul
+    list-style none
+    padding 0
+    margin 0
+    li
+      margin 8px 0
+      a
+        display block
+        line-height 30px
+        color $grey
+        opacity .5
+        font-size 16px
+        padding 4px 0px
+        position relative
+      &:not(:last-child) a::after
+        content ""
+        position absolute
+        bottom 0
+        left 0
+        width 100px
+        height 2px
+        background $grey
+        opacity .35

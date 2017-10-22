@@ -13,6 +13,8 @@
     flex-direction row  
     padding 0
     align-items center
+    justify-content space-between
+    padding 0 15vw    
   &--copyright
     width 100%
     height 40px
@@ -20,14 +22,11 @@
     align-items center
     justify-content center
     flex-direction row
-    @media screen and (min-width: $laptop)
-      width calc(50vw + 35px)
-      padding 0 10vw
     span
       margin-left 20px
     svg
-      width 40px
-      height 40px
+      width 30px
+      height 30px
       path
         fill $black
         stroke none
@@ -35,6 +34,8 @@
         fill none 
         stroke $black
         stroke-width 50px
+    @media screen and (min-width: $laptop)
+      width 200px
   &--nav
     list-style none
     width 100%
@@ -46,12 +47,13 @@
       flex-direction row
       flex-wrap wrap
       height 40px
-      margin 0 auto
+      margin 0
       align-items center
-      width 500px
+      width auto
+      flex-wrap nowrap
     li
       text-align center
-      padding 5px 0
+      flex-shrink 0
       &:nth-child(4)
         margin-top 40px
         @media screen and (min-width: $laptop) 
@@ -65,6 +67,6 @@
         display block
         width 100%
         height 100%
+        padding 10px        
       @media screen and (min-width: $laptop)
-        margin 0
-        width calc(100% / 6)
+        margin 0 10px

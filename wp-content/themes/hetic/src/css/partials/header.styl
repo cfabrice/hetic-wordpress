@@ -6,7 +6,10 @@
   width 100vw
   height 80px
   @media screen and (min-width: $laptop)  
-    box-shadow 0 0 5px rgba(0,0,0,.2)  
+    box-shadow 0 0 5px rgba(0,0,0,.2)
+    transition transform .35s ease-in-out
+    &.hide
+      transform translateY(-80px)
   &--logo
     position relative
     z-index 1000
@@ -89,9 +92,9 @@
       height 80px
       top 0
       box-shadow none
-      overflow hidden
+      overflow hidden      
     &-expand
-      transform translateY(0)      
+      transform translateY(0)     
     &-list
       width 100%
       list-style none
