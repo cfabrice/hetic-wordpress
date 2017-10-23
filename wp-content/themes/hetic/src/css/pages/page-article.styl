@@ -33,7 +33,6 @@
   &-full-image
     width calc(100vw - 20vw)
     height calc(100vw - 20vw)
-    background red
     display flex
     overflow hidden
     justify-content center
@@ -44,64 +43,66 @@
       height 100%
     @media screen and (min-width: $laptop)
       width 100%
-      height 80vh
+      height auto
       img 
         width 100%
         height auto
-
-  &-content-title
-    width auto  
-    display inline-block
-    margin 0 auto
-    font-family 'Alegreya Sans SC', sans-serif
-    font-size 42px
-    padding-bottom 5px
-    color $grey
-    position relative
-    &::after
-      content ""
-      position absolute
-      bottom 0
-      left 0
-      width 110%
-      height 2px
-      background $yellow
-      border-radius 3px
-     @media screen and (min-width: $laptop)
-      margin 0 8vw
-  
   &-content
-    text-align justify
-    line-height 32px
-    font-size 18px
-    margin-top 35px
-    @media screen and (min-width: $laptop)
-      padding 0 8vw    
-  &-content-image
-    width calc(100vw - 20vw)
-    height calc(100vw - 20vw)
-    display flex
-    overflow hidden
-    justify-content center
-    align-items center
-    margin 0
-    margin-top 35px
-    font-size 18px
-    img
-      height 100%
-      width auto
-    @media screen and (min-width: $laptop)
-      width 100%
-      height 550px
+
+    &-title
+      width auto  
+      display inline-block
+      margin 0 auto
+      font-family 'Alegreya Sans SC', sans-serif
+      font-size 42px
+      padding-bottom 5px
+      color $grey
+      position relative
+      &::after
+        content ""
+        position absolute
+        bottom 0
+        left 0
+        width 110%
+        height 2px
+        background $yellow
+        border-radius 3px
+      @media screen and (min-width: $laptop)
+        margin 0 8vw
+  
+    p
+      text-align justify
+      line-height 32px
+      font-size 18px
+      margin-top 35px
+      @media screen and (min-width: $laptop)
+        padding 0 8vw   
+
+    &-image
+      width calc(100vw - 20vw)
+      height calc(100vw - 20vw)
+      display flex
+      overflow hidden
+      justify-content center
+      align-items center
+      margin 0
+      margin-top 35px
+      font-size 18px
       img
-        width auto
         height 100%
-  &-content-caption
-    font-size 13px
-    text-align center
-    line-height 21px
-    opacity .7
-    margin-top 10px
+        width auto
+      @media screen and (min-width: $laptop)
+        width 100%
+        height 550px
+        img
+          width auto
+          height 100%
+    &-caption
+      font-size 13px
+      text-align center
+      line-height 21px
+      opacity .7
+      margin-top 10px
   
   &-share
     height auto
