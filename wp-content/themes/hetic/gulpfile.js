@@ -66,7 +66,7 @@ gulp.task('html', function(){
 gulp.task('watch', function() {
   gulp.watch(config.src + 'css/**', ['css'])
   gulp.watch(config.src + 'js/**', ['js'])
-  gulp.watch('./dist/**', ['html'])
+  gulp.watch('./dist/**.html', ['html'])
 })
 
 gulp.task('default', ['watch', 'js', 'css', 'sync'], function() {})

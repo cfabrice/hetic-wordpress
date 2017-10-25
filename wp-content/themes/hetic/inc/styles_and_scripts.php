@@ -23,7 +23,7 @@ function ajout_scripts() {
 
 
 
-	wp_register_style( 'google_font', 'https://fonts.googleapis.com/css?family=Alegreya+Sans|Alegreya+Sans+SC,300,400,500|Raleway,400,500,600,700' );
+	wp_register_style( 'google_font', 'https://fonts.googleapis.com/css?family=Alegreya+Sans|Alegreya+Sans+SC,300,400,500|Cabin,400,500,600,700' );
 	wp_enqueue_style( 'google_font' );
 
 }
