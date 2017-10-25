@@ -1,0 +1,132 @@
+.exhibitions
+  padding 0px 0
+
+.full-image
+  display flex
+  justify-content center
+  align-items center
+  width 100vw
+  height 100vw
+  max-height 600px
+  overflow hidden
+  img 
+    height 100%
+    width auto
+
+.container
+  padding 0 10vw
+
+.header-scroll
+  width 100%
+  height 50px
+  margin 50px 0
+  overflow-x scroll
+  position relative
+  &::-webkit-scrollbar 
+    width 5px
+    height 2px    
+    background darken($white, 9%)
+  &::-webkit-scrollbar-track 
+    background none
+  &::-webkit-scrollbar-thumb 
+    background-color $yellow
+    width 5px
+  ul
+    width auto
+    height 40px
+    padding 0
+    margin 0
+    display flex
+    flex-flow row
+    list-style none
+    flex-wrap nowrap
+    li
+      flex-shrink 0
+      height 40px
+      width auto
+      border-radius 50px
+      overflow hidden
+      &:not(:last-child)
+        margin-right 30px   
+      button
+        height 100%
+        border none
+        padding 0 25px
+        line-height 40px
+        text-align center
+        background none
+        color darken($white, 25%)
+        font-size 17px
+        font-weight 500
+        cursor pointer
+        outline none
+        &:active
+          color darken($white, 35%)
+        &.active
+          background $yellow
+          color $white
+
+.row
+  @media screen and (min-width: $laptop)
+    display flex
+    flex-direction row
+  .menu
+    height 100%    
+    @media screen and (min-width: $laptop)
+      width 30%
+      flex-shrink 0
+    button
+      transition all .2s ease-in-out
+      position relative
+      &::before
+        content ""
+        width 2px
+        height 100%
+        position absolute
+        top 0
+        left 0
+        background $yellow
+        transform-origin 50% 0%
+        transform scaleY(0)
+        transition all .3s ease-in-out
+      &.active
+        color $yellow
+        opacity 1
+        &::before
+          transform scaleY(1)
+  
+  .content
+    margin-top 35px
+    @media screen and (min-width: $laptop)
+      width 65%
+      margin-left 5vw
+      margin-top 0
+    &-title
+      font-family 'Alegreya Sans SC'
+      font-size 32px
+      color $black
+      position relative
+      display inline-block
+      padding-bottom 10px
+      margin 0
+      margin-bottom 25px
+      &::after
+        content ''
+        position absolute
+        bottom 0px
+        left 0px
+        width 105%
+        border-radius 2px
+        height 2px
+        background $yellow
+    &-text
+      font-size 16px
+      line-height 26px      
+      color rgba($black, .7)
+      text-align left
+      text-align justify
+
+.row-slider
+  width 100%
+  height 500px
+  background red

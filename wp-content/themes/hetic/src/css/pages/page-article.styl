@@ -71,7 +71,7 @@
         margin 0 8vw
   
     p
-      text-align justify
+      text-align left
       line-height 32px
       font-size 18px
       margin-top 35px
@@ -119,8 +119,9 @@
     li
       width auto
       height 40px
-      line-height 40px
+      line-height 24px
       margin 5px 0
+      font-size 16px
       @media screen and (min-width: $laptop)
         margin 0 30px
       a
@@ -147,6 +148,9 @@
           *
             fill #0077b5
   &-related
+    @media screen and (min-width: $laptop)
+      width 700px      
+      margin 0 auto
     &-title
       text-transform uppercase
 

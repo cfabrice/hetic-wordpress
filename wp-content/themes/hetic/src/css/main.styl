@@ -1,7 +1,7 @@
 body,html
   width: 100%
   height: 100%
-  font-family 'Raleway', sans-serif
+  font-family 'Lato', sans-serif
   font-weight 400
   overflow-x hidden
   cursor default
@@ -11,13 +11,11 @@ body,html
     background darken($white, 9%)
   
   &::-webkit-scrollbar-track 
-    // -webkit-box-shadow inset 0 0 6px rgba(0,0,0,0.3)
     background none
   
   &::-webkit-scrollbar-thumb 
     background-color $yellow
     width 5px
-    // background none    
 
 *, *::after, *::before
   box-sizing: border-box
@@ -123,37 +121,45 @@ a
 
 .item-container
   box-shadow 0 2px 2px 0 rgba(0, 0, 0, 0.24)
-  padding 5px 15px
-  @media screen and (min-width: $laptop)
-    width 700px      
-    margin 0 auto
+  padding 10px 0px
+  background darken($white, 2%)
   .item-title
-    font-family 'Raleway', sans-serif
-    font-size 16px
+    font-family 'Lato', sans-serif
+    font-size 18px
     font-weight 500
-    color $grey 
-    opacity .7
-    margin 5px 0
+    color rgba($black, .7)
+    margin 10px 0
+    padding-left 20px
   ul
     list-style none
     padding 0
     margin 0
     li
-      margin 8px 0
-      a
+      margin 0
+      button
         display block
-        line-height 30px
-        color $grey
-        opacity .5
+        line-height 24px
+        color rgba($black, .5)
         font-size 16px
-        padding 4px 0px
+        padding 12px 20px
+        margin 0
         position relative
-      &:not(:last-child) a::after
+        width 100%
+        height 100%
+        text-align left
+        background none 
+        border none
+        outline none
+        cursor pointer
+        &:active
+          transition none
+          background darken($white, 5%)        
+      &:not(:last-child) button::after
         content ""
         position absolute
-        bottom 0
-        left 0
-        width 100px
+        z-index 1000
+        bottom 0px
+        left 20px
+        width 55px
         height 2px
-        background $grey
-        opacity .35
+        background rgba($grey,.1)

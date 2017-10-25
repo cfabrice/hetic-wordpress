@@ -9,16 +9,29 @@ burger_button.addEventListener('click', function(){
 
 const header    = document.querySelector('.header')
 let header_hide = false
-window.addEventListener('mousewheel', function(e){
-  if(!header_hide && e.deltaY < 0){
+document.body.addEventListener('mousewheel', function(e){
+  if(!header_hide && e.deltaY < 0 && !scroll_disabled){
     header.classList.remove('hide')
     header_hide = true
   }
-  else if(header_hide && e.deltaY > 0 && document.body.scrollTop > 80){
+  else if(header_hide && e.deltaY > 0 && document.body.scrollTop > 80 && !scroll_disabled){
     header.classList.add('hide')    
     header_hide = false
   }
 })
+
+// SCROLL DISABLE
+const disabled_elements = document.querySelectorAll('.scroll-disable')
+let scroll_disabled     = false
+for (var i = 0; i < disabled_elements.length; i++) {
+  disabled_elements[i].addEventListener('mouseenter', ()=>{
+    scroll_disabled = true
+  })
+  disabled_elements[i].addEventListener('mouseleave', ()=>{
+    scroll_disabled = false
+  })
+}
+
 
 
 // EXHIBITIONS SLIDER
