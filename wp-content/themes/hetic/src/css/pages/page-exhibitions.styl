@@ -124,9 +124,102 @@
       line-height 26px      
       color rgba($black, .7)
       text-align left
-      text-align justify
-
 .row-slider
   width 100%
-  height 500px
-  background red
+  margin 50px 0
+  position relative
+  .slider-container
+    width 100%
+    height 80vw
+    background none
+    position relative
+    @media screen and (min-width: $laptop)
+      height calc(80vw / 1.78)
+  .slider-item
+    width 0%
+    height 100%
+    position absolute
+    top 0
+    left 0
+    transition all .60s ease-in-out
+    overflow hidden
+    .slider-img
+      width 80vw
+      height 100%
+      background-image url('../img/jr-atelier.jpg')
+      background-size cover
+      background-position center center
+      // transform translateX(-20%)
+      transition all .65s ease-in-out
+    &.active  
+      width 100%
+      .slider-img
+        // transform translateX(0)   
+    &:nth-child(2n)
+      .slider-img
+        background-image url('../img/article-full.jpg')
+  .slider-nav
+    width 100%
+    height 60px
+    display flex
+    flex-direction row
+    align-items center
+    .slider-index
+      font-size 14px
+      font-weight 500
+      width 100px
+      height 100%
+      line-height 60px
+      text-align center
+      color rgba($black, .3)
+      @media screen and (min-width: $laptop)
+        width 20vw 
+      span 
+        margin 0 2px 
+      &-current
+        color $yellow
+    .slider-timer
+      width calc(100% - 200px)
+      height 2px
+      background rgba($black, .2)
+      border-radius 2px
+      overflow hidden
+      @media screen and (min-width: $laptop)
+        width calc(100% - 40vw)
+      &-fill
+        width 100%
+        height 100%
+        background $yellow
+        transform-origin 0 50%
+        transform scaleX(0)
+        animation 0
+        &.clean
+          animation slider-timer-clean 1s ease-in-out !important
+        &.fill
+          animation slider-timer-fill 4s 0s ease-in-out
+    .slider-controls
+      width 100px
+      height 100%
+      display flex
+      justify-content center
+      align-items center
+      @media screen and (min-width: $laptop)
+        width 20vw
+      .slider-prev, .slider-next
+        background none
+        border none
+        width 32px
+        height 60px
+        cursor pointer
+        margin 0
+        padding 0        
+        outline none
+        opacity .3
+        transition all .3s ease-in-out
+        &:hover
+          opacity .6
+        svg 
+          width 24px
+          height 24px
+          .icon
+            fill $black
