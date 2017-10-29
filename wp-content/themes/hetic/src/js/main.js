@@ -8,7 +8,7 @@ burger_button.addEventListener('click', function(){
 })
 
 const header    = document.querySelector('.header')
-let header_hide = false
+var header_hide = false
 document.body.addEventListener('mousewheel', function(e){
   if(!header_hide && e.deltaY < 0 && !scroll_disabled){
     header.classList.remove('hide')
@@ -22,7 +22,7 @@ document.body.addEventListener('mousewheel', function(e){
 
 // SCROLL DISABLE
 const disabled_elements = document.querySelectorAll('.scroll-disable')
-let scroll_disabled     = false
+var scroll_disabled     = false
 for (var i = 0; i < disabled_elements.length; i++) {
   disabled_elements[i].addEventListener('mouseenter', ()=>{
     scroll_disabled = true
@@ -70,4 +70,8 @@ if(document.querySelector('.section-exhibitions') != undefined){
 // HOME PLAYER)
 if(document.querySelector('.section-videos-wrapper') != undefined){
   const player = new Player(document.querySelector('.section-videos-wrapper'), true)
+}
+
+if(document.querySelector('.slider') != undefined){
+  const slider = new Slider(document.querySelector('.slider'))
 }
