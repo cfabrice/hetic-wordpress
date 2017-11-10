@@ -20,6 +20,8 @@
         display block
         padding 0 30px
         height 60px
+        width 100%
+        text-align left
         line-height 60px
         border none
         border-left 2px solid transparent
@@ -103,6 +105,9 @@
     border-top-left-radius 3px
     border-top-right-radius 3px
     overflow hidden
+    transition box-shadow .3s ease-in-out
+    &:hover
+      box-shadow 2px 3px 25px rgba($black, .2)
     &:active
       background darken($white, 4%)
     @media screen and (min-width: $tablet)
