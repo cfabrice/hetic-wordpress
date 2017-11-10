@@ -72,6 +72,7 @@ if(document.querySelector('.section-videos-wrapper') != undefined){
   const player = new Player(document.querySelector('.section-videos-wrapper'), true)
 }
 
+// SLIDER
 if(document.querySelector('.slider') != undefined){
   const slider = new Slider(document.querySelector('.slider'))
 }

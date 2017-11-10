@@ -59,7 +59,7 @@ a
       position absolute
       bottom 0
       left 10vw
-      width calc(100% - 18vw)
+      width calc(100% - 20vw)
       height 2px
       background $yellow
       border-radius 2px
@@ -113,11 +113,6 @@ a
 
 .icon
   fill $white
-  // stroke $white
-  // stroke-width 1
-  // stroke-linecap round
-  // stroke-linejoin round
-
 
 .item-container
   box-shadow 0 2px 2px 0 rgba(0, 0, 0, 0.24)
@@ -163,3 +158,15 @@ a
         width 55px
         height 2px
         background rgba($grey,.1)
+
+.full-image
+  display flex
+  justify-content center
+  align-items center
+  width 100vw
+  height 100vw
+  max-height 600px
+  overflow hidden
+  img 
+    height 100%
+    width auto
