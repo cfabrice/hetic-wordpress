@@ -1,125 +1,32 @@
 <?php /* Template Name: Template Exhibitions */ ?>
 
 <?php get_header(); ?>
-    <main class="main exhibitions">
+    <main class="main exhibitions" id="exhibitions">
         <div class="full-image">
             <img src="<?php echo IMAGES_URL ?>/JR-exhib.png" alt="JR exhibition">
         </div>
         <div class="container">
             <header class="header-scroll scroll-disable">
                 <ul class="header-scroll-nav">
-                    <?php
-                    $terms = get_terms('years', [
-                        'hide_empty' => false,
-                        'orderby'    => 'name',
-                        'order'      => 'DESC'
-                    ]);
-                    if( ! empty($terms) && ! is_wp_error($terms)){
-                        $year = $terms[0]->name;
-                        foreach($terms as $term){
-                            echo '<li><button class="active list-years">' . $term->name . '</button></li>';
-                        }
-                    }
-                    ?>
+                    <li v-for="year in years">
+                        <button class="active list-years" @click="setActiveYear(year.name)">{{ year.name }}</button>
+                    </li>
+                </ul>
                 </ul>
             </header>
-            <script>
-                jQuery(document).ready(function ($) {
-                    let year = '<?php echo $year; ?>',
-                        listYears = document.querySelectorAll('.list-years'),
-                        titleYear = document.querySelector('.title-year'),
-                        listExhibitions = document.querySelector('.list-exhibtions'),
-                        contentTitle = document.querySelector('.content-title'),
-                        contentText = document.querySelector('.content-text'),
-                        exhibitionsLinks
-
-                    getExhibitions(year)
-
-                    listYears.forEach(year => {
-                        year.addEventListener('click', (e) => {
-                            getExhibitions(year.innerText)
-                        })
-                    })
-
-                    function getExhibitions(year) {
-                        jQuery.ajax({
-                            type: "POST",
-                            url: ajaxurl,
-                            data: {
-                                action: "get_exhibitions",
-                                year: year
-                            },
-                            success: function (data) {
-                                // Suppression des anciennes exhbitions
-                                while (listExhibitions.firstChild) {
-                                    listExhibitions.removeChild(listExhibitions.firstChild);
-                                }
-                                const exhib = JSON.parse(data)
-                                // Mise à jour de la date dans le titre
-                                titleYear.innerText = year
-                                exhib.forEach(e => {
-                                    let li = document.createElement('li');
-                                    li.innerHTML = '<button data-id="' + e.ID + '" class="exhibition-item-link">' + e.city + ' - ' + e.post_title + '</button>'
-                                    li.className = 'exhibition-item';
-                                    listExhibitions.appendChild(li);
-                                })
-                                if (exhib[0]) {
-                                    setActiveArticle(exhib[0])
-                                } else {
-                                    contentTitle.innerText = ''
-                                    contentText.innerText = ''
-                                }
-                                exhibitionsLinks = document.querySelectorAll('.exhibition-item-link')
-                                setTimeout(function () {
-                                    listenToExhibitionClick()
-                                }, 100)
-                            },
-                            error: function (errorThrown) {
-                                console.log('err : ' + errorThrown);
-                            }
-                        });
-                    }
-
-                    function listenToExhibitionClick() {
-                        exhibitionsLinks.forEach(item => {
-                            item.addEventListener('click', (e) => {
-                                fetchArticle(e.target.dataset.id)
-                            })
-                        })
-                    }
-
-                    function setActiveArticle(post) {
-                        contentTitle.innerHTML = post.post_title
-                        contentText.innerText = post.content
-                    }
-
-                    function fetchArticle(postId) {
-                        jQuery.ajax({
-                            type: "GET",
-                            url: ajaxurl,
-                            data: {
-                                action: "get_exhibition",
-                                id: postId
-                            },
-                            success: function (data) {
-                                data = JSON.parse(data)
-                                setActiveArticle(data)
-                            },
-                            error: function (errorThrown) {
-                                console.log('err : ' + errorThrown);
-                            }
-                        });
-                    }
-                })
-            </script>
             <div class="row">
                 <div class="item-container menu">
-                    <h4 class="item-title menu-title">Exhibitions <span class="title-year"></span></h4>
-                    <ul class="list-exhibtions"></ul>
+                    <h4 class="item-title menu-title">Exhibitions {{ year }}</h4>
+                    <ul class="list-exhibtions">
+                        <li class="exhibition-item" v-for="exhibition in exhibitions">
+                            <button class="exhibition-item-link" @click="getArticle(exhibition.ID)">{{ exhibition.city }} {{ exhibition.post_title }}
+                            </button>
+                        </li>
+                    </ul>
                 </div>
                 <div class="content">
-                    <h1 class="content-title"></h1>
-                    <p class="content-text"></p>
+                    <h1 class="content-title">{{ article.title }}</h1>
+                    <p class="content-text">{{ article.content }}</p>
                 </div>
             </div>
             <div class="row-slider slider">

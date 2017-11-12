@@ -12,7 +12,7 @@ const browserSync   = require('browser-sync').create()
 
 let config = {
   'src' : 'src/',
-  'dist': 'dist/assets/'
+  'dist': 'assets/'
 }
 
 gulp.task('css', function () {
@@ -29,14 +29,14 @@ gulp.task('css', function () {
       path.basename += ".min"
     }))
     .pipe(gulp.dest(config.dist + 'css'))
-    .pipe(browserSync.reload({stream: true}))    
+    .pipe(browserSync.reload({stream: true}))
 })
 
 gulp.task('js', function() {
   return gulp.src([
-    config.src + 'js/Classes/**',
-    config.src + 'js/**'
-  ])
+      config.src + 'js/Classes/**',
+      config.src + 'js/**'
+    ])
     .pipe(sourcemaps.init())
     .pipe(plumber({errorHandler: notify.onError("JS Error: <%= error.message %>")}))
     .pipe(babel({
@@ -52,13 +52,14 @@ gulp.task('js', function() {
 
 gulp.task('sync', function() {
   browserSync.init({
-    server: {
-      baseDir: "./dist/"
-    }
+    proxy: 'hetic-wordpress.dev'
   })
 })
 
 gulp.task('html', function(){
+  browserSync.reload();
+})
+gulp.task('php', function(){
   browserSync.reload();
 })
 
@@ -67,6 +68,7 @@ gulp.task('watch', function() {
   gulp.watch(config.src + 'css/**', ['css'])
   gulp.watch(config.src + 'js/**', ['js'])
   gulp.watch('./dist/**.html', ['html'])
+  gulp.watch('./**.php', ['php'])
 })
 
 gulp.task('default', ['watch', 'js', 'css', 'sync'], function() {})

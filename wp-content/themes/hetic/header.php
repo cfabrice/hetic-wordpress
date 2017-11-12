@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 
     <title><?php wp_title(''); ?><?php if(wp_title('', false)) { echo ' : '; } ?><?php bloginfo('name'); ?></title>
-
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
