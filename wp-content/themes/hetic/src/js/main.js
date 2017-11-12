@@ -72,4 +72,11 @@ if (document.querySelector('.section-videos-wrapper') != undefined) {
 if (document.querySelector('.slider') != undefined) {
   const slider = new Slider(document.querySelector('.slider'))
 }
+
+if (document.querySelector('#instagramDate') != undefined) {
+  let instagramDate = document.querySelector('#instagramDate')
+  const d = instagramDate.getAttribute('datetime')
+  instagramDate.innerText = moment(d).format('DD MMMM YYYY')
+}
 new Exhibitions()
+new News()

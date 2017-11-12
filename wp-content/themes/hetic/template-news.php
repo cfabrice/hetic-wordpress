@@ -1,130 +1,66 @@
 <?php /* Template Name: Template News */ ?>
 
 <?php get_header(); ?>
-    <main class="main news">
+    <section class="section section-social">
+        <div class="section-social-photo" style="background-image:url('<?php echo THEME_URL ?>/instagram/photo.jpg')"></div>
+        <div class="section-social-content">
+            <h2 class="section-social-content--title">
+                <?php the_field('section_1_title') ?>
+            </h2>
+            <div class="section-social-content-about">
+                <div class="section-social-content-about--img" style="background-image:url('<?php echo IMAGES_URL ?>/JR-profile.jpg')" ></div>
+                <span class="section-social-content-about--name">
+                <?php the_field('section_1_user_name') ?>
+            </span>
+            </div>
+            <div class="section-social-content--text">
+                <p>
+                    <?php
+                    $str = file_get_contents(THEME_URL . '/instagram/instagram.json');
+                    $json = json_decode($str);
+                    echo $json->desc
+                    ?>
+                </p>
+            </div>
+            <div class="section-social-content--date">
+                <time id="instagramDate" datetime="<?php echo $json->photoTime ?>"></time>
+            </div>
+        </div>
+    </section>
+    <main class="main news" id="news">
         <header class="news-header">
             <ul>
-                <li><button class="active">All</button></li>
-                <li><button>Projects</button></li>
-                <li><button>Exhibitions</button></li>
-                <li><button>Litographs</button></li>
+                <li>
+                    <button @click="changeCategory('all')" :class="{active:activeCategory === 'all'}">All</button>
+                </li>
+                <li v-for="category in categories">
+                    <button @click="changeCategory(category.name)" :class="{active:activeCategory === category.name}">{{
+                        category.name }}
+                    </button>
+                </li>
             </ul>
         </header>
         <div class="news-container">
-            <a href="#" title="article name" class="news-container-item item">
-                <div class="item-img" style="background-image: url('./assets/img/article-full.jpg');"></div>
+            <a :href="article.slug" title="article name" class="news-container-item item" v-for="article in articles">
+                <div class="item-img" :style="{backgroundImage: 'url('+article.img+')'}"></div>
                 <div class="item-content">
                     <div class="item-content-category">
-                        #projects
+                        <span v-for="category in article.categories">#{{category.name}} </span>
                     </div>
                     <div class="item-content-date">
-                        on 24 September, 2017
+                        {{ article.projectDate }}
                     </div>
                     <h4 class="item-content-title">
-                        faces places, the film
+                        {{ article.post_title }}
                     </h4>
                     <p class="item-content-text">
-                        JR inaugurated last week a huge scaffolding installation on the Mexican side of the border between the United States and Mexico…
-                    </p>
-                </div>
-            </a>
-            <a href="#" title="article name" class="news-container-item item">
-                <div class="item-img" style="background-image: url('./assets/img/article-full.jpg');"></div>
-                <div class="item-content">
-                    <div class="item-content-category">
-                        #projects
-                    </div>
-                    <div class="item-content-date">
-                        on 24 September, 2017
-                    </div>
-                    <h4 class="item-content-title">
-                        faces places, the film
-                    </h4>
-                    <p class="item-content-text">
-                        JR inaugurated last week a huge scaffolding installation on the Mexican side of the border between the United States and Mexico…
-                    </p>
-                </div>
-            </a>
-            <a href="#" title="article name" class="news-container-item item">
-                <div class="item-img" style="background-image: url('./assets/img/article-full.jpg');"></div>
-                <div class="item-content">
-                    <div class="item-content-category">
-                        #projects
-                    </div>
-                    <div class="item-content-date">
-                        on 24 September, 2017
-                    </div>
-                    <h4 class="item-content-title">
-                        faces places, the film
-                    </h4>
-                    <p class="item-content-text">
-                        JR inaugurated last week a huge scaffolding installation on the Mexican side of the border between the United States and Mexico…
-                    </p>
-                </div>
-            </a>
-            <a href="#" title="article name" class="news-container-item item">
-                <div class="item-img" style="background-image: url('./assets/img/article-full.jpg');"></div>
-                <div class="item-content">
-                    <div class="item-content-category">
-                        #projects
-                    </div>
-                    <div class="item-content-date">
-                        on 24 September, 2017
-                    </div>
-                    <h4 class="item-content-title">
-                        faces places, the film
-                    </h4>
-                    <p class="item-content-text">
-                        JR inaugurated last week a huge scaffolding installation on the Mexican side of the border between the United States and Mexico…
+                        {{ article.content }}
                     </p>
                 </div>
             </a>
             <div class="row">
-                <button class="news-more">Load more</button>
+                <button class="news-more" @click="loadMore">Load more</button>
             </div>
         </div>
     </main>
-   <!-- <main class="main">
-        <h1>Nos news</h1>
-		<?php
-/*		$lastposts = get_posts( array(
-			'posts_per_page' => 6,
-			'post_type'      => 'news',
-			'orderby'        => 'date',
-			'order'          => 'DESC'
-		) );
-
-		if ( $lastposts ) { */?>
-            <section class="section section-projects">
-                <div class="section-projects-wrapper">
-					<?php
-/*					foreach ( $lastposts as $post ) :
-						setup_postdata( $post ); */?>
-                        <a class="section-news-wrapper-item" href="<?php /*the_permalink() */?>">
-							<?php /*$image = get_field( 'image_main' ); */?>
-                            <div class="section-news-wrapper-item--img"
-                                 style="background-image:url('<?php /*echo $image['url']; */?>')"></div>
-                            <div class="section-news-wrapper-item--date">
-								<?php /*the_date() */?>
-                            </div>
-                            <div class="section-news-wrapper-item--title">
-								<?php /*the_title(); */?>
-                            </div>
-                            <div class="section-news-wrapper-item--text">
-								<?php
-/*								$givchars = 100;
-								$postgiv  = get_field( 'content' );
-								$modgiv   = substr( $postgiv, 0, $givchars );
-								echo ' ' . $modgiv . '...';
-								*/?>
-                            </div>
-                        </a>
-						<?php
-/*					endforeach;
-					wp_reset_postdata();
-					*/?>
-                </div>
-            </section>
-		<?php /*} */?>
-    </main>-->
 <?php get_footer(); ?>

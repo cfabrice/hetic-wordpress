@@ -25,7 +25,7 @@
                 </p>
             </div>
             <div class="section-social-content--date">
-                <time datetime="<?php echo $json->photoTime ?>">LA DATE FORMATÉE !! </time>
+                <time id="instagramDate" datetime="<?php echo $json->photoTime ?>"></time>
             </div>
         </div>
         <div class="section-social-links">
@@ -39,7 +39,7 @@
     </section>
     <?php
     $lastposts = get_posts( array(
-        'posts_per_page' => 4,
+        'posts_per_page' => 3,
         'post_type' => 'news',
         'orderby' => 'date',
         'order' => 'DESC'
@@ -85,7 +85,7 @@
         <?php
     }
     $lastposts = get_posts( array(
-        'posts_per_page' => 4,
+        'posts_per_page' => 3,
         'post_type' => 'projects',
         'orderby' => 'date',
         'order' => 'DESC'

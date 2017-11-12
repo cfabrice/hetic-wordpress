@@ -91,8 +91,6 @@ remove_action('welcome_panel', 'wp_welcome_panel');
 add_action('wp_ajax_get_exhibitions', 'get_exhibitions');
 add_action('wp_ajax_nopriv_get_exhibitions', 'get_exhibitions');
 
-add_action('wp_ajax_get_exhibition', 'get_exhibition');
-add_action('wp_ajax_nopriv_get_exhibition', 'get_exhibition');
 
 function get_exhibitions()
 {
@@ -119,6 +117,9 @@ function get_exhibitions()
     wp_die();
 }
 
+add_action('wp_ajax_get_exhibition', 'get_exhibition');
+add_action('wp_ajax_nopriv_get_exhibition', 'get_exhibition');
+
 function get_exhibition()
 {
     $postId        = $_POST['id'];
@@ -139,5 +140,57 @@ function get_years()
       'order'      => 'DESC'
     ]);
     echo json_encode($years);
+    wp_die();
+}
+
+add_action('wp_ajax_get_news_categories', 'get_news_categories');
+add_action('wp_ajax_nopriv_get_news_categories', 'get_news_categories');
+function get_news_categories()
+{
+    $categories = get_terms('categories', [
+      'hide_empty' => false,
+      'orderby'    => 'name',
+      'order'      => 'DESC'
+    ]);
+    echo json_encode($categories);
+    wp_die();
+}
+
+
+add_action('wp_ajax_get_news', 'get_news');
+add_action('wp_ajax_nopriv_get_news', 'get_news');
+
+
+function get_news()
+{
+    $category = $_POST['category'];
+    $offset   = $_POST['offset'];
+    if ($category !== 'all') {
+        $posts = get_posts([
+          'posts_per_page' => 8,
+          'post_type'      => 'news',
+          'offset'         => $offset,
+          'tax_query'      => [
+            [
+              'taxonomy' => 'categories',
+              'field'    => 'name',
+              'terms'    => $category,
+            ]
+          ]
+        ]);
+    } else {
+        $posts = get_posts([
+          'posts_per_page' => 8,
+          'post_type'      => 'news',
+          'offset'         => $offset
+        ]);
+    }
+    foreach ($posts as $key => $post) {
+        $post->img         = get_field('image_main', $posts[$key]->ID)['url'];
+        $post->projectDate = get_field('project_date', $posts[$key]->ID);
+        $post->categories  = get_the_terms($post->ID, 'categories');
+        $post->slug        = get_post_permalink($post->ID);
+    }
+    echo json_encode($posts);
     wp_die();
 }

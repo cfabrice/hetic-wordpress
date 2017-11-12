@@ -50,3 +50,8 @@ register_taxonomy( 'city', ['exhibitions'], [
 	'rewrite'      => [ 'slug' => 'city' ],
 	'hierarchical' => true,
 ] );
+register_taxonomy( 'categories', ['news'], [
+	'label'        => __( 'Catégories' ),
+	'rewrite'      => [ 'slug' => 'categories' ],
+	'hierarchical' => true,
+] );
