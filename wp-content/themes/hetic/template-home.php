@@ -123,6 +123,13 @@
         </a>
     </section>
     <?php } ?>
+
+	<?php
+	$terms = get_terms( 'city', array(
+		'orderby' => 'name',
+		'order' => 'ASC'
+	) );
+	if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) { ?>
     <section class="section section-exhibitions">
     <div class="section-exhibitions--title section--title">
       exhibitions
@@ -141,12 +148,11 @@
         </div>
         <div class="section-exhibitions-container-slider-nav">
           <div class="section-exhibitions-container-slider-nav-list">
-            <button class="section-exhibitions-container-slider-nav-list--item active">Paris</button>
-            <button class="section-exhibitions-container-slider-nav-list--item">London</button>
-            <button class="section-exhibitions-container-slider-nav-list--item">Berlin</button>
-            <button class="section-exhibitions-container-slider-nav-list--item">Tokyo</button>
-            <button class="section-exhibitions-container-slider-nav-list--item">Honk-Kong</button>
-            <button class="section-exhibitions-container-slider-nav-list--item">Shangai</button>
+              <?php
+		          foreach ( $terms as $key => $term ) {
+			          echo '<button class="section-exhibitions-container-slider-nav-list--item '.($key===0 ? "active": "").'">' . $term->name . '</button>';
+		          }
+	          ?>
           </div>
         </div>
       </div>
@@ -245,6 +251,7 @@
       See all exhibitions
     </a>
   </section>
+    <?php } ?>
   <section class="section section-videos">
       <h2 class="section-videos--title section--title">
         videos
