@@ -6,12 +6,14 @@ class Exhibitions {
         el: '#exhibitions',
         data: {
           years: [],
-          year: '',
+          activeYear: 2014,
           article: {
             title: '',
             content: ''
           },
           exhibitions: [],
+          loaderArticle: false,
+          loaderHeight: '400px'
         },
         mounted () {
           this.getYears()
@@ -30,8 +32,7 @@ class Exhibitions {
           getExhibitions () {
             let form_data = new FormData
             form_data.append('action', 'get_exhibitions')
-            form_data.append('year', this.year)
-            
+            form_data.append('year', this.activeYear)
             axios.post(`${ajaxurl}`, form_data).then(res => {
               this.exhibitions = res.data
               if (res.data.length > 0) {
@@ -49,16 +50,18 @@ class Exhibitions {
             let form_data = new FormData
             form_data.append('action', 'get_exhibition')
             form_data.append('id', postId)
+            this.loaderArticle = true
             axios.post(`${ajaxurl}`, form_data).then(res => {
               this.article.title = res.data.post_title
               this.article.content = res.data.content
+              this.loaderArticle = false
             }).catch(err => {
               console.log(err)
             })
           },
           setActiveYear (year) {
-            this.year = year
-            this.getExhibitions(this.year)
+            this.activeYear = year
+            this.getExhibitions(this.activeYear)
           }
         }
       })

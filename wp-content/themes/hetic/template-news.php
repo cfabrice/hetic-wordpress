@@ -2,13 +2,15 @@
 
 <?php get_header(); ?>
     <section class="section section-social">
-        <div class="section-social-photo" style="background-image:url('<?php echo THEME_URL ?>/instagram/photo.jpg')"></div>
+        <div class="section-social-photo"
+             style="background-image:url('<?php echo THEME_URL ?>/instagram/photo.jpg')"></div>
         <div class="section-social-content">
             <h2 class="section-social-content--title">
                 <?php the_field('section_1_title') ?>
             </h2>
             <div class="section-social-content-about">
-                <div class="section-social-content-about--img" style="background-image:url('<?php echo IMAGES_URL ?>/JR-profile.jpg')" ></div>
+                <div class="section-social-content-about--img"
+                     style="background-image:url('<?php echo IMAGES_URL ?>/JR-profile.jpg')"></div>
                 <span class="section-social-content-about--name">
                 <?php the_field('section_1_user_name') ?>
             </span>
@@ -16,7 +18,7 @@
             <div class="section-social-content--text">
                 <p>
                     <?php
-                    $str = file_get_contents(THEME_URL . '/instagram/instagram.json');
+                    $str  = file_get_contents(THEME_URL . '/instagram/instagram.json');
                     $json = json_decode($str);
                     echo $json->desc
                     ?>
@@ -40,7 +42,7 @@
                 </li>
             </ul>
         </header>
-        <div class="news-container">
+        <div class="news-container" v-if="!loading">
             <a :href="article.slug" title="article name" class="news-container-item item" v-for="article in articles">
                 <div class="item-img" :style="{backgroundImage: 'url('+article.img+')'}"></div>
                 <div class="item-content">
@@ -62,5 +64,15 @@
                 <button class="news-more" @click="loadMore">Load more</button>
             </div>
         </div>
+        <div class="loader" v-else :style="{height: loaderHeight}">
+            <img src="<?php echo IMAGES_URL ?>/loader.svg" alt="Loader">
+        </div>
     </main>
+    <style>
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+    </style>
 <?php get_footer(); ?>

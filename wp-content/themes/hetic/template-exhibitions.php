@@ -9,24 +9,30 @@
             <header class="header-scroll scroll-disable">
                 <ul class="header-scroll-nav">
                     <li v-for="year in years">
-                        <button class="active list-years" @click="setActiveYear(year.name)">{{ year.name }}</button>
+                        <button class="list-years" @click="setActiveYear(year.name)"
+                                :class="{active:activeYear == year.name}">{{ year.name }}
+                        </button>
                     </li>
                 </ul>
                 </ul>
             </header>
             <div class="row">
                 <div class="item-container menu">
-                    <h4 class="item-title menu-title">Exhibitions {{ year }}</h4>
+                    <h4 class="item-title menu-title">Exhibitions {{ activeYear }}</h4>
                     <ul class="list-exhibtions">
                         <li class="exhibition-item" v-for="exhibition in exhibitions">
-                            <button class="exhibition-item-link" @click="getArticle(exhibition.ID)">{{ exhibition.city }} {{ exhibition.post_title }}
+                            <button class="exhibition-item-link" @click="getArticle(exhibition.ID)">{{ exhibition.city
+                                }} {{ exhibition.post_title }}
                             </button>
                         </li>
                     </ul>
                 </div>
-                <div class="content">
+                <div class="content" v-if="!loaderArticle">
                     <h1 class="content-title">{{ article.title }}</h1>
                     <p class="content-text">{{ article.content }}</p>
+                </div>
+                <div class="content" v-else>
+                    <img src="<?php echo IMAGES_URL ?>/loader.svg" alt="Loader">
                 </div>
             </div>
             <div class="row-slider slider">

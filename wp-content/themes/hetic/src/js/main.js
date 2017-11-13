@@ -76,7 +76,7 @@ if (document.querySelector('.slider') != undefined) {
 if (document.querySelector('#instagramDate') != undefined) {
   let instagramDate = document.querySelector('#instagramDate')
   const d = instagramDate.getAttribute('datetime')
-  instagramDate.innerText = moment(d).format('DD MMMM YYYY')
+  instagramDate.innerText = moment(d).locale('fr').fromNow()
 }
 new Exhibitions()
 new News()
