@@ -60,7 +60,7 @@
                     </p>
                 </div>
             </a>
-            <div class="row">
+            <div class="row" v-if="offset + 8 < max">
                 <button class="news-more" @click="loadMore">Load more</button>
             </div>
         </div>

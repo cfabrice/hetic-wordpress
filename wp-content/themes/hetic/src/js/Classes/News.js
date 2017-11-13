@@ -9,6 +9,7 @@ class News {
           articles: {},
           activeCategory: 'all',
           offset: 0,
+          max: 0,
           loading: false,
           loaderHeight: '400px'
         },
@@ -38,12 +39,13 @@ class News {
             this.loaderHeight = `${document.querySelector('.news-container').offsetHeight}px`
             axios.post(`${ajaxurl}`, form_data).then(res => {
               if (this.articles.length > 0) {
-                res.data.forEach(e => {
+                res.data[0].forEach(e => {
                   this.articles.push(e)
                 })
               } else {
-                this.articles = res.data
+                this.articles = res.data[0]
               }
+              this.max = parseInt(res.data[1])
               this.loading = false
             }).catch(err => {
               console.log(err)

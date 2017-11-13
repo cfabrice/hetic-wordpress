@@ -166,7 +166,7 @@ function get_news()
     $category = $_POST['category'];
     $offset   = $_POST['offset'];
     if ($category !== 'all') {
-        $posts = get_posts([
+        $posts      = get_posts([
           'posts_per_page' => 8,
           'post_type'      => 'news',
           'offset'         => $offset,
@@ -178,8 +178,10 @@ function get_news()
             ]
           ]
         ]);
+        $countPosts = count($posts);
     } else {
-        $posts = get_posts([
+        $countPosts = wp_count_posts('news')->publish;
+        $posts      = get_posts([
           'posts_per_page' => 8,
           'post_type'      => 'news',
           'offset'         => $offset
@@ -191,6 +193,7 @@ function get_news()
         $post->categories  = get_the_terms($post->ID, 'categories');
         $post->slug        = get_post_permalink($post->ID);
     }
+    $posts = [$posts, $countPosts];
     echo json_encode($posts);
     wp_die();
 }
