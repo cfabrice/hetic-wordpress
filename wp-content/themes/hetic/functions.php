@@ -112,6 +112,8 @@ function get_exhibitions()
     }
     if ($posts) {
         $posts[0]->content = get_field('content', $posts[0]->ID, false);
+        $posts[0]->photos  = get_field('photos', $posts[0]->ID);
+        $posts[0]->video   = get_field('video', $posts[0]->ID);
     }
     echo json_encode($posts);
     wp_die();
@@ -124,6 +126,8 @@ function get_exhibition()
 {
     $postId        = $_POST['id'];
     $post          = get_post($postId);
+    $post->photos  = get_field('photos', $post->ID);
+    $post->video   = get_field('video', $post->ID);
     $post->content = get_field('content', $postId, false);
     echo json_encode($post);
 
