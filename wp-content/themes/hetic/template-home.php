@@ -190,22 +190,8 @@
                         <div class="section-exhibitions-container-content-wrapper-list">
                             <?php
                             foreach ($terms as $key => $term) :
-                                $posts = get_posts([
-                                  'posts_per_page' => -1,
-                                  'post_type'      => 'exhibitions',
-                                  'tax_query'      => [
-                                    [
-                                      'taxonomy' => 'city',
-                                      'field'    => 'slug',
-                                      'terms'    => $term->slug,
-                                    ]
-                                  ]
-                                ]);
                                 ?>
                                 <div class="section-exhibitions-container-content-wrapper-list--item">
-                                    <!--<div class="section-exhibitions-container-content-wrapper-list--item--date">
-                                        From March 1st to June 29th, 2014
-                                    </div>-->
                                     <div class="section-exhibitions-container-content-wrapper-list--item--title">
                                         <?php echo get_field('titre', $posts[0]->ID) ?>
                                     </div>
