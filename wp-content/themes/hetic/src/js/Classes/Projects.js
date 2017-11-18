@@ -1,70 +1,74 @@
-class Exhibitions {
+class Projects {
   constructor () {
-    const exhibitions = document.querySelector('#exhibitions')
-    if (exhibitions) {
+    const projects = document.querySelector('#projects')
+    if (projects) {
       new Vue({
-        el: '#exhibitions',
+        el: '#projects',
         data: {
-          years: [],
-          activeYear: 2014,
+          projects: [],
+          projectsDetails: [],
+          activeProject: '',
+          activeProjectSlug: '',
           article: {
             title: '',
             content: '',
+            year: '',
             photos: [],
-            video: []
+            videos: []
           },
-          exhibitions: [],
           loaderArticle: false,
           loaderHeight: '400px',
         },
         mounted () {
           this.loaderArticle = true
-          this.getYears()
+          this.getProjects()
         },
         methods: {
-          getYears () {
+          getProjects () {
             let form_data = new FormData
-            form_data.append('action', 'get_years')
+            form_data.append('action', 'get_projects_categories')
             axios.post(`${ajaxurl}`, form_data).then(res => {
-              this.years = res.data
-              this.setActiveYear(this.years[0].name)
+              this.projects = res.data
+              this.setActiveProject(this.projects[0].name, this.projects[0].slug)
               this.loaderArticle = false
             }).catch(err => {
               console.log(err)
             })
           },
-          getExhibitions () {
+          getProjectsDetails () {
             let form_data = new FormData
-            form_data.append('action', 'get_exhibitions')
-            form_data.append('year', this.activeYear)
+            form_data.append('action', 'get_projects_details')
+            form_data.append('project_category', this.activeProjectSlug)
             axios.post(`${ajaxurl}`, form_data).then(res => {
-              this.exhibitions = res.data
+              this.projectsDetails = res.data
               if (res.data.length > 0) {
                 this.article.title = res.data[0].post_title
                 this.article.content = res.data[0].content
                 this.article.photos = res.data[0].photos
-                this.article.video = res.data[0].video
-                if (res.data[0].video) {
-                  setTimeout(function () {
-                    new Player(document.querySelector('#video-e'))
-                  }, 100)
-                }
+                this.article.videos = res.data[0].videos
+                this.article.year = res.data[0].year
                 if (res.data[0].photos) {
                   setTimeout(function () {
-                    new Slider(document.querySelector('.slider-e'))
+                    new Slider(document.querySelector('#slider-p'))
+                  }, 90)
+                }
+                if (res.data[0].videos) {
+                  setTimeout(function () {
+                    new Player(document.querySelector('#video-p'), true)
                   }, 100)
                 }
               } else {
                 this.article.title = ''
                 this.article.content = ''
+                this.article.year = ''
                 this.article.photos = []
-                this.article.video = []
+                this.article.videos = []
               }
             }).catch(err => {
               console.log(err)
             })
           },
-          getArticle (postId) {
+          getDetails (postId) {
             let form_data = new FormData
             form_data.append('action', 'get_exhibition')
             form_data.append('id', postId)
@@ -73,25 +77,27 @@ class Exhibitions {
               this.article.title = res.data.post_title
               this.article.content = res.data.content
               this.article.photos = res.data.photos
-              this.article.video = res.data.video
+              this.article.videos = res.data.videos
+              this.article.year = res.data.year
               this.loaderArticle = false
-              if (res.data.video) {
-                setTimeout(function () {
-                  new Player(document.querySelector('#video-e'))
-                }, 100)
-              }
               if (res.data.photos) {
                 setTimeout(function () {
-                  new Slider(document.querySelector('.slider-e'))
+                  new Slider(document.querySelector('#slider-p'))
+                }, 90)
+              }
+              if (res.data.videos) {
+                setTimeout(function () {
+                  new Player(document.querySelector('#video-p'), true)
                 }, 100)
               }
             }).catch(err => {
               console.log(err)
             })
           },
-          setActiveYear (year) {
-            this.activeYear = year
-            this.getExhibitions(this.activeYear)
+          setActiveProject (name, slug) {
+            this.activeProject = name
+            this.activeProjectSlug = slug
+            this.getProjectsDetails()
           }
         }
       })

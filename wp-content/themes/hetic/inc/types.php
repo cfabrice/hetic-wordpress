@@ -55,3 +55,8 @@ register_taxonomy( 'categories', ['news'], [
 	'rewrite'      => [ 'slug' => 'categories' ],
 	'hierarchical' => true,
 ] );
+register_taxonomy( 'project_category', ['projects'], [
+	'label'        => __( 'Projet Catégorie' ),
+	'rewrite'      => [ 'slug' => 'project_category' ],
+	'hierarchical' => true,
+] );

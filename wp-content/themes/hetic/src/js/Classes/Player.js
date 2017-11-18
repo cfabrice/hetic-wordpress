@@ -162,16 +162,16 @@ class Player {
         }
       })
       
+      window.addEventListener('resize', () => {
+        this.playlist_item_width = this.playlist_items[0].getBoundingClientRect().width + 20
+        if (this.playlist) {
+          console.log('resize')
+          this.initPlaylist()
+        }
+      })
+      
       this.initPlaylist()
     }
-    
-    window.addEventListener('resize', () => {
-      this.playlist_item_width = this.playlist_items[0].getBoundingClientRect().width + 20
-      if (this.playlist) {
-        console.log('resize')
-        this.initPlaylist()
-      }
-    })
     
     this.init()
     

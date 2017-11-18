@@ -256,7 +256,7 @@
       <h2 class="section-videos--title section--title">
         videos
       </h2>
-      <div class="section-videos-wrapper">
+      <div class="section-videos-wrapper" id="video-home">
         <div class="section-videos-wrapper-effect section-videos-wrapper-effect-play">
           <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 0h24v24H0z" fill="none"/>

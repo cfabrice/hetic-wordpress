@@ -201,3 +201,45 @@ function get_news()
     echo json_encode($posts);
     wp_die();
 }
+
+add_action('wp_ajax_get_projects_categories', 'get_projects_categories');
+add_action('wp_ajax_nopriv_get_projects_categories', 'get_projects_categories');
+function get_projects_categories()
+{
+    $categories = get_terms('project_category', [
+      'hide_empty' => false,
+      'orderby'    => 'name',
+      'order'      => 'DESC'
+    ]);
+    echo json_encode($categories);
+    wp_die();
+}
+
+add_action('wp_ajax_get_projects_details', 'get_projects_details');
+add_action('wp_ajax_nopriv_get_projects_details', 'get_projects_details');
+
+
+function get_projects_details()
+{
+    $project_category = $_POST['project_category'];
+
+    $posts = get_posts([
+      'posts_per_page' => -1,
+      'post_type'      => 'projects',
+      'tax_query'      => [
+        [
+          'taxonomy' => 'project_category',
+          'field'    => 'slug',
+          'terms'    => $project_category,
+        ]
+      ]
+    ]);
+    if ($posts) {
+        $posts[0]->content = get_field('content', $posts[0]->ID, false);
+        $posts[0]->photos  = get_field('photos', $posts[0]->ID);
+        $posts[0]->videos   = get_field('videos', $posts[0]->ID);
+        $posts[0]->year   = get_field('year', $posts[0]->ID);
+    }
+    echo json_encode($posts);
+    wp_die();
+}

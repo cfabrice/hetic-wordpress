@@ -64,8 +64,8 @@ if (document.querySelector('.section-exhibitions') != undefined) {
 }
 
 // HOME PLAYER)
-if (document.querySelector('.section-videos-wrapper') != undefined) {
-  const player = new Player(document.querySelector('.section-videos-wrapper'), true)
+if (document.querySelector('#video-home') != undefined) {
+  const player = new Player(document.querySelector('#video-home'), true)
 }
 
 // SLIDER
@@ -80,3 +80,4 @@ if (document.querySelector('#instagramDate') != undefined) {
 }
 new Exhibitions()
 new News()
+new Projects()
