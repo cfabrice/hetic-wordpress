@@ -6,9 +6,8 @@
              style="background-image: url('<?php echo get_field('image')['url']; ?>');background-repeat: no-repeat;
                      background-size: cover; background-position: center;"></div>
         <div class="section--title">
-            contact
+            <?php the_field('title') ?>
         </div>
-
         <?php echo do_shortcode('[contact-form-7 id="4" title="Contact form 1" html_class="contact-form"]'); ?>
     </main>
 <?php get_footer(); ?>
