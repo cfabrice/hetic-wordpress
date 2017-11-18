@@ -70,7 +70,7 @@ class Projects {
           },
           getDetails (postId) {
             let form_data = new FormData
-            form_data.append('action', 'get_exhibition')
+            form_data.append('action', 'get_project_detail')
             form_data.append('id', postId)
             this.loaderArticle = true
             axios.post(`${ajaxurl}`, form_data).then(res => {
@@ -97,6 +97,11 @@ class Projects {
           setActiveProject (name, slug) {
             this.activeProject = name
             this.activeProjectSlug = slug
+            this.article.title = ''
+            this.article.content = ''
+            this.article.year = ''
+            this.article.photos = []
+            this.article.videos = []
             this.getProjectsDetails()
           }
         }

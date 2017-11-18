@@ -237,9 +237,24 @@ function get_projects_details()
     if ($posts) {
         $posts[0]->content = get_field('content', $posts[0]->ID, false);
         $posts[0]->photos  = get_field('photos', $posts[0]->ID);
-        $posts[0]->videos   = get_field('videos', $posts[0]->ID);
-        $posts[0]->year   = get_field('year', $posts[0]->ID);
+        $posts[0]->videos  = get_field('videos', $posts[0]->ID);
+        $posts[0]->year    = get_field('year', $posts[0]->ID);
     }
     echo json_encode($posts);
+    wp_die();
+}
+
+add_action('wp_ajax_get_project_detail', 'get_project_detail');
+add_action('wp_ajax_nopriv_get_project_detail', 'get_project_detail');
+
+function get_project_detail()
+{
+    $postId        = $_POST['id'];
+    $post          = get_post($postId);
+    $post->photos  = get_field('photos', $post->ID);
+    $post->videos  = get_field('videos', $post->ID);
+    $post->content = get_field('content', $postId, false);
+    echo json_encode($post);
+
     wp_die();
 }

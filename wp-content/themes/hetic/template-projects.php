@@ -69,7 +69,7 @@
             </div>
         </div>
         <div class="section-videos-wrapper" id="video-p"
-             v-if="!loaderArticle && article && article.videos !== null && article.content.length > 0">
+             v-if="!loaderArticle && article && article.videos !== null && article.videos !== undefined && article.content.length > 0">
             <div class="section-videos-wrapper-effect section-videos-wrapper-effect-play">
                 <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 0h24v24H0z" fill="none"/>
@@ -82,7 +82,8 @@
                     <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" class="icon"/>
                 </svg>
             </div>
-            <video class="section-videos-wrapper-video" :src="article.videos[0].video.url" controlsList="nodownload"></video>
+            <video v-if="article.videos" class="section-videos-wrapper-video" :src="article.videos[0].video.url"
+                   controlsList="nodownload"></video>
             <button class="section-videos-wrapper-controls--fullscreen">
                 <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 0h24v24H0z" fill="none"/>
@@ -139,7 +140,7 @@
             </div>
         </div>
         <div class="section-videos-nav"
-             v-if="!loaderArticle && article && article.videos !== null && article.content.length > 0">
+             v-if="!loaderArticle && article && article.videos !== null && article.videos !== undefined && article.content.length > 0">
             <button class="section-videos-nav-controls section-videos-nav-controls--prev hide">
                 <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" class="icon"/>
