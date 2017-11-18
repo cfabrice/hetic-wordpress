@@ -209,7 +209,7 @@ function get_projects_categories()
     $categories = get_terms('project_category', [
       'hide_empty' => false,
       'orderby'    => 'name',
-      'order'      => 'DESC'
+      'order'      => 'ASC'
     ]);
     echo json_encode($categories);
     wp_die();
