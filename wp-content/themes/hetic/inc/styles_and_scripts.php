@@ -59,18 +59,6 @@ function wpc_mime_types($mimes)
     return $mimes;
 }
 
-add_filter('wp_handle_upload_prefilter', 'custom_upload_filter');
-
-function process_images($results)
-{
-    if ($results['type'] === 'video/*') {
-        $cmd = "ffmpeg -ss 4 -i " . $results . " -s 1920x1080 -frames:v 1 " . $results['name'] . ".jpg";
-        exec($cmd, $thumb_stdout, $retval);
-    }
-}
-
-add_action('wp_handle_upload', 'process_images');
-
 add_filter('upload_mimes', 'wpc_mime_types');
 add_action('init', 'jr_menus');
 
