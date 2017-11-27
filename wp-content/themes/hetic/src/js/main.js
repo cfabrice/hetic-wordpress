@@ -2,23 +2,27 @@
 const burger_button = document.querySelector('.header-burger')
 const burger_nav    = document.querySelector('.header-nav')
 
-burger_button.addEventListener('click', function(){
-  burger_button.classList.toggle('header-burger-active')
-  burger_nav.classList.toggle('header-nav-expand')
-})
+if(burger_button != undefined){
+  burger_button.addEventListener('click', function(){
+    burger_button.classList.toggle('header-burger-active')
+    burger_nav.classList.toggle('header-nav-expand')
+  })
+}
 
 const header    = document.querySelector('.header')
 var header_hide = false
-document.body.addEventListener('mousewheel', function(e){
-  if(!header_hide && e.deltaY < 0 && !scroll_disabled){
-    header.classList.remove('hide')
-    header_hide = true
-  }
-  else if(header_hide && e.deltaY > 0 && document.body.scrollTop > 80 && !scroll_disabled){
-    header.classList.add('hide')    
-    header_hide = false
-  }
-})
+if(header != undefined){
+  document.body.addEventListener('mousewheel', function(e){
+    if(!header_hide && e.deltaY < 0 && !scroll_disabled){
+      header.classList.remove('hide')
+      header_hide = true
+    }
+    else if(header_hide && e.deltaY > 0 && document.body.scrollTop > 80 && !scroll_disabled){
+      header.classList.add('hide')    
+      header_hide = false
+    }
+  })
+}
 
 // SCROLL DISABLE
 const disabled_elements = document.querySelectorAll('.scroll-disable')
