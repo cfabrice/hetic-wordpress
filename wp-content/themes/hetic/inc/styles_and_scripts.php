@@ -22,7 +22,8 @@ function ajout_scripts()
 
     wp_register_script('axios_script', 'https://unpkg.com/axios/dist/axios.min.js');
     wp_enqueue_script('axios_script');
-    wp_register_script('moment_script', 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment-with-locales.min.js');
+    wp_register_script('moment_script',
+      'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment-with-locales.min.js');
     wp_enqueue_script('moment_script');
 
     wp_register_style('main_style', CSS_URL . '/app.min.css');
@@ -49,6 +50,7 @@ function jr_menus()
     register_nav_menus([
       'header-menu-right' => 'Header menu right',
       'header-menu-left'  => 'Header menu left',
+      'footer-menu-left'  => 'Footer menu left',
     ]);
 }
 
