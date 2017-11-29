@@ -1,7 +1,7 @@
 # HETIC - Projet Wordpress - P2020
 
 ### Serveur :
-https://hetic-wp.etienne-fontaine.fr/
+bit.ly/JR-wp
 
 ### Equipe :
 - Etienne FONTAINE
