@@ -44,7 +44,7 @@
     $lastposts = get_posts([
       'posts_per_page' => 3,
       'post_type'      => 'news',
-      'orderby'        => 'date',
+      'orderby'        => 'project_date',
       'order'          => 'DESC'
     ]);
 
@@ -91,8 +91,8 @@
     $lastposts = get_posts([
       'posts_per_page' => 3,
       'post_type'      => 'projects',
-      'orderby'        => 'date',
-      'order'          => 'DESC'
+      'orderby'        => 'year',
+      'order'          => 'ASC'
     ]);
 
     if ($lastposts) { ?>
