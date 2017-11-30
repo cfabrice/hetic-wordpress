@@ -162,7 +162,7 @@ function get_news_categories()
     $categories = get_terms('categories', [
       'hide_empty' => false,
       'orderby'    => 'name',
-      'order'      => 'DESC'
+      'order'      => 'DESC',
     ]);
     echo json_encode($categories);
     wp_die();
