@@ -79,8 +79,8 @@
         padding 0 8vw   
 
     .wp-caption
-      width calc(100vw - 20vw)
-      height calc(100vw - 20vw)
+      width calc(100vw - 20vw) !important
+      height auto
       display flex
       flex-direction column
       overflow hidden
@@ -89,15 +89,15 @@
       margin 0
       margin-top 35px
       font-size 18px
-      @media screen and (min-width: $laptop)
+      img
+        height auto
         width 100%
+      @media screen and (min-width: $laptop)
+        width 100% !important
         height auto
         img
           width auto
           height 550px
-      img
-        height 100%
-        width auto
       p
         font-size 13px
         text-align center
