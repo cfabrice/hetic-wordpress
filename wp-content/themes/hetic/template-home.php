@@ -297,13 +297,13 @@
                     if (have_rows('videos')) :
                         while (have_rows('videos')) :
                             the_row();
-                            $image = get_sub_field('image');
+                            $image = get_sub_field('image')['url'];
                             $video = get_sub_field('video');
                             ?>
                             <button data-target="<?php echo $video['url']; ?>"
-                                    style="background-image:url('<?php echo $image['url']; ?>')"
+                                    style="background-image:url('<?php echo $image; ?>')"
                                     class="section-videos-nav-wrapper-list-item">
-                                <span><?php echo $image['title']; ?></span>
+                                <span><?php echo $video['title']; ?></span>
                             </button>
                             <?php
                         endwhile;
