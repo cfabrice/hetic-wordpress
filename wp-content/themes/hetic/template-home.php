@@ -62,7 +62,9 @@
                         <div class="section-news-wrapper-item--img"
                              style="background-image:url('<?php echo $image['url']; ?>')"></div>
                         <div class="section-news-wrapper-item--date">
-                            <?php the_date() ?>
+                            <?php $date = get_field('project_date', false, false);
+                            $date = new DateTime($date);?>
+                            <?php echo $date->format('j M Y'); ?>
                         </div>
                         <div class="section-news-wrapper-item--title">
                             <?php the_title(); ?>
