@@ -28,8 +28,8 @@
                 </ul>
             </div>
             <div class="content" v-if="!loaderArticle">
-                <h1 class="content-title" v-if="article.title">{{ article.title }} / {{ article.year }}</h1>
-                <p class="content-text">{{ article.content }}</p>
+                <h1 class="content-title" v-if="article.title">{{ article.title }}</h1>
+                <p class="content-text" v-html="article.content"></p>
             </div>
             <div class="content" v-else>
                 <img src="<?php echo IMAGES_URL; ?>/loader.svg" alt="Loader">
@@ -70,7 +70,7 @@
             </div>
         </div>
         <div class="section-videos-wrapper" id="video-p"
-             v-if="!loaderArticle && article && article.videos !== null && article.videos !== undefined && article.content.length > 0">
+             v-if="!loaderArticle && article && article.video !== false && article.videos !== null && article.videos !== false && article.videos !== undefined && article.videos.length > 0 && article.videos[0].video !== false && article.content.length > 0">
             <div class="section-videos-wrapper-effect section-videos-wrapper-effect-play">
                 <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 0h24v24H0z" fill="none"/>
@@ -141,7 +141,7 @@
             </div>
         </div>
         <div class="section-videos-nav"
-             v-if="!loaderArticle && article && article.videos !== null && article.videos !== undefined && article.content.length > 0">
+             v-if="!loaderArticle && article && article.video !== false && article.videos !== null && article.videos !== false && article.videos !== undefined && article.videos.length > 0 && article.videos[0].video !== false && article.content.length > 0">
             <button class="section-videos-nav-controls section-videos-nav-controls--prev hide">
                 <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" class="icon"/>

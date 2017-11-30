@@ -95,7 +95,8 @@
       'posts_per_page' => 3,
       'post_type'      => 'projects',
       'orderby'        => 'year',
-      'order'          => 'ASC'
+      'meta_key'       => 'year',
+      'order'          => 'DESC'
     ]);
 
     if ($lastposts) { ?>
@@ -296,12 +297,13 @@
                     if (have_rows('videos')) :
                         while (have_rows('videos')) :
                             the_row();
+                            $image = get_sub_field('image');
                             $video = get_sub_field('video');
                             ?>
                             <button data-target="<?php echo $video['url']; ?>"
-                                    style="background-image:url('<?php echo $video['url']; ?>')"
+                                    style="background-image:url('<?php echo $image['url']; ?>')"
                                     class="section-videos-nav-wrapper-list-item">
-                                <span><?php echo $video['title']; ?></span>
+                                <span><?php echo $image['title']; ?></span>
                             </button>
                             <?php
                         endwhile;
