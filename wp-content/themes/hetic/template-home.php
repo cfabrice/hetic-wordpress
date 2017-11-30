@@ -44,8 +44,9 @@
     $lastposts = get_posts([
       'posts_per_page' => 3,
       'post_type'      => 'news',
+      'order'          => 'DESC',
       'orderby'        => 'project_date',
-      'order'          => 'DESC'
+      'meta_key'       => 'project_date'
     ]);
 
     if ($lastposts) { ?>
@@ -63,7 +64,7 @@
                              style="background-image:url('<?php echo $image['url']; ?>')"></div>
                         <div class="section-news-wrapper-item--date">
                             <?php $date = get_field('project_date', false, false);
-                            $date = new DateTime($date);?>
+                            $date       = new DateTime($date); ?>
                             <?php echo $date->format('j M Y'); ?>
                         </div>
                         <div class="section-news-wrapper-item--title">

@@ -196,7 +196,10 @@ function get_news()
         $posts      = get_posts([
           'posts_per_page' => 8,
           'post_type'      => 'news',
-          'offset'         => $offset
+          'offset'         => $offset,
+          'order'          => 'DESC',
+          'orderby'        => 'project_date',
+          'meta_key'       => 'project_date'
         ]);
     }
     foreach ($posts as $key => $post) {

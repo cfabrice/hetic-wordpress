@@ -5,7 +5,7 @@
         <header class="news-header">
             <ul>
                 <li>
-                    <button @click="changeCategory('all')" :class="{active:activeCategory === 'all'}">All</button>
+                    <button @click="changeCategory('all')" :class="{active:activeCategory === 'all'}"><?php the_field('text_all') ?></button>
                 </li>
                 <li v-for="category in categories">
                     <button @click="changeCategory(category.name)" :class="{active:activeCategory === category.name}">{{
@@ -33,7 +33,7 @@
                 </div>
             </a>
             <div class="row" v-if="offset + 8 < max">
-                <button class="news-more" @click="loadMore">Load more</button>
+                <button class="news-more" @click="loadMore"><?php the_field('text_more') ?></button>
             </div>
         </div>
         <div class="loader" v-else :style="{height: loaderHeight}">
