@@ -2,7 +2,7 @@
 
 * [Visit website](http://jr.p2020.fr)
 
-![Alt text](src/assets/img/screenshot.png?raw=true "Screenshot")
+![Alt text](wp-content/themes/hetic/screenshot.jpg?raw=true "Screenshot")
 
 ## Getting started
 
