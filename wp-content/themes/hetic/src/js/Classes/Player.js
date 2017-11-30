@@ -187,8 +187,8 @@ class Player{
       this.time_duration.textContent = this.formatTime(this.video.duration)   
       this.time_current.textContent = this.formatTime(this.video.currentTime)       
       
-      this.time_seek_bar_fill.style.transform = 'scaleX(0)'    
-    })    
+      this.time_seek_bar_fill.style.transform = 'scaleX(0)'
+    })
   }
 
   initPlaylist(){
@@ -367,6 +367,12 @@ class Player{
     else{
       this.video_next.classList.remove('hide')    
     }
+
+    this.video.addEventListener('canplay', () =>{
+      this.video.play()
+      this.container.classList.add('playing')
+      this.render()
+    })
   }
   
 
