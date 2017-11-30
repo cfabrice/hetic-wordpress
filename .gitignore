@@ -26,3 +26,4 @@ wp-includes
 node_modules/
 vendor/
 /wp-content/themes/hetic/.idea/
+.vscode/

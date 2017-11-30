@@ -22,6 +22,14 @@ foreach (glob(THEME_PATH . "/inc/*.php") as $file) {
     include_once $file;
 }
 
+function remove_menus()
+{
+    remove_menu_page('index.php');
+    remove_menu_page('edit.php');
+
+}
+
+add_action('admin_menu', 'remove_menus');
 
 // SECURITY
 function wpb_remove_version()

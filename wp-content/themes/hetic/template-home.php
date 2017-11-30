@@ -81,9 +81,9 @@
                 wp_reset_postdata();
                 ?>
             </div>
-            <a href="<?php echo get_page_link(get_page_by_title('news')->ID); ?>"
-               class="section-news--link section--link">
-                <?php the_field('section_news_button') ?>
+            <a href=" <?php the_field('section_news_button_link') ?>"
+               class="section-projects--link section--link">
+                <?php the_field('section_news_button_text') ?>
             </a>
         </section>
         <?php
@@ -134,9 +134,9 @@
                 wp_reset_postdata();
                 ?>
             </div>
-            <a href="<?php echo get_page_link(get_page_by_title('projects')->ID); ?>"
+            <a href=" <?php the_field('section_projects_button_link') ?>"
                class="section-projects--link section--link">
-                <?php the_field('section_projects_button') ?>
+                <?php the_field('section_projects_button_text') ?>
             </a>
         </section>
     <?php } ?>
@@ -204,9 +204,9 @@
                     </div>
                 </div>
             </div>
-            <a href="<?php echo get_page_link(get_page_by_title('exhibitions')->ID); ?>"
+            <a href=" <?php the_field('section_exhibition_button_link') ?>"
                class="section-projects--link section--link">
-                <?php the_field('section_projects_button') ?>
+                <?php the_field('section_exhibition_button_text') ?>
             </a>
         </section>
     <?php } ?>
@@ -322,8 +322,9 @@
         <div class="section-about-wrapper">
             <div class="section-about-wrapper-content">
                 <?php the_field('section_about_content') ?>
-                <a href="<?php echo get_page_link(get_page_by_title('jr')->ID); ?>" class="section-about-wrapper--link">
-                    <?php the_field('section_about_link') ?>
+                <a href=" <?php the_field('section_about_link') ?>"
+                   class="section-about-wrapper--link">
+                    <?php the_field('section_about_link_text') ?>
                 </a>
             </div>
             <?php $image = get_field('section_about_photo'); ?>

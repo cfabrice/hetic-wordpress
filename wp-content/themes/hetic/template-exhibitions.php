@@ -3,7 +3,8 @@
 <?php get_header(); ?>
     <main class="main exhibitions" id="exhibitions">
         <div class="full-image">
-            <img src="<?php echo IMAGES_URL ?>/JR-exhib.png" alt="JR exhibition">
+            <?php $image = get_field('cover_photo'); ?>
+            <img src="<?php echo $image['url']; ?>" alt="JR exhibition">
         </div>
         <div class="container">
             <header class="header-scroll scroll-disable">

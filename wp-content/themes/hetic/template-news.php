@@ -1,34 +1,6 @@
 <?php /* Template Name: Template News */ ?>
 
 <?php get_header(); ?>
-    <section class="section section-social">
-        <div class="section-social-photo"
-             style="background-image:url('<?php echo THEME_URL ?>/instagram/photo.jpg')"></div>
-        <div class="section-social-content">
-            <h2 class="section-social-content--title">
-                <?php the_field('section_1_title') ?>
-            </h2>
-            <div class="section-social-content-about">
-                <div class="section-social-content-about--img"
-                     style="background-image:url('<?php echo IMAGES_URL ?>/JR-profile.jpg')"></div>
-                <span class="section-social-content-about--name">
-                <?php the_field('section_1_user_name') ?>
-            </span>
-            </div>
-            <div class="section-social-content--text">
-                <p>
-                    <?php
-                    $str  = file_get_contents(THEME_URL . '/instagram/instagram.json');
-                    $json = json_decode($str);
-                    echo $json->desc
-                    ?>
-                </p>
-            </div>
-            <div class="section-social-content--date">
-                <time id="instagramDate" datetime="<?php echo $json->photoTime ?>"></time>
-            </div>
-        </div>
-    </section>
     <main class="main news" id="news">
         <header class="news-header">
             <ul>
