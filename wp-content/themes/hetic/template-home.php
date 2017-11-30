@@ -230,7 +230,7 @@
                     <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" class="icon"/>
                 </svg>
             </div>
-            <video class="section-videos-wrapper-video" src="<?php echo VIDEOS_URL; ?>/JR-video-1.mp4"
+            <video class="section-videos-wrapper-video" src="<?php echo get_field('videos')[0]['video']['url']; ?>"
                    controlsList="nodownload"></video>
             <button class="section-videos-wrapper-controls--fullscreen">
                 <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">

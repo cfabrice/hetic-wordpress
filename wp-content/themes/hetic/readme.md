@@ -2,7 +2,7 @@
 
 **Wordpress HETIC**
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa voluptate explicabo eligendi.
+xvfb-run node --harmony index.js
 
 ## FEATURES ##
 > - 
