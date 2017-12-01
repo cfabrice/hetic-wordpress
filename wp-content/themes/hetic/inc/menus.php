@@ -202,3 +202,23 @@ class jr_Walker_Menu_Footer_Left extends Walker_Nav_Menu
         $output .= "</li>\n";
     }
 }
+
+add_action('init', 'jr_menus');
+
+function jr_menus()
+{
+    register_nav_menus([
+      'header-menu-right' => 'Header menu right',
+      'header-menu-left'  => 'Header menu left',
+      'footer-menu-left'  => 'Footer menu left',
+    ]);
+}
+
+function remove_menus()
+{
+    remove_menu_page('index.php');
+    remove_menu_page('edit.php');
+    remove_menu_page('edit-comments.php');
+}
+
+add_action('admin_menu', 'remove_menus');

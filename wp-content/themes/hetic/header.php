@@ -29,13 +29,6 @@
         <span class="header-burger--line"></span>
     </button>
     <nav class="header-nav">
-        <!-- <ul class="header-nav-list header-nav-list-left">
-            <li><a href="#" class="active">home</a></li>
-            <li><a href="#">news</a></li>
-            <li><a href="#">projects</a></li>
-            <li><a href="#">exhibitions</a></li>
-            <li><a href="#">jr</a></li>
-        </ul> -->
         <ul class="header-nav-list header-nav-list-left">
             <?php wp_nav_menu([
               'menu_class'     => 'fm',
@@ -56,11 +49,5 @@
               'theme_location' => 'header-menu-right',
             ]); ?>
         </ul>
-        <!--  <ul class="header-nav-list header-nav-list-right">
-            <li><a href="#">Get Involved</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#"><img src="<?php echo IMAGES_URL ?>/lang-france.png" alt="lang fr"></a></li>
-        </ul> -->
     </nav>
 </header>

@@ -182,8 +182,10 @@
                     <div class="section-exhibitions-container-slider-nav">
                         <div class="section-exhibitions-container-slider-nav-list">
                             <?php
+                            $i = 0;
                             foreach ($terms as $key => $term) {
-                                echo '<button class="section-exhibitions-container-slider-nav-list--item ' . ($key === 0 ? "active" : "") . '">' . $term->name . '</button>';
+                                echo '<button class="section-exhibitions-container-slider-nav-list--item ' . ($i === 0 ? "active" : "") . '">' . $term->name . '</button>';
+                                $i++;
                             }
                             ?>
                         </div>
@@ -194,6 +196,17 @@
                         <div class="section-exhibitions-container-content-wrapper-list">
                             <?php
                             foreach ($terms as $key => $term) :
+                                $posts = get_posts([
+                                  'posts_per_page' => -1,
+                                  'post_type'      => 'exhibitions',
+                                  'tax_query'      => [
+                                    [
+                                      'taxonomy' => 'city',
+                                      'field'    => 'slug',
+                                      'terms'    => $term->slug,
+                                    ]
+                                  ]
+                                ]);
                                 ?>
                                 <div class="section-exhibitions-container-content-wrapper-list--item">
                                     <div class="section-exhibitions-container-content-wrapper-list--item--title">
@@ -295,6 +308,7 @@
                 <div class="section-videos-nav-wrapper-list">
                     <?php
                     if (have_rows('videos')) :
+                        $i = 0;
                         while (have_rows('videos')) :
                             the_row();
                             $image = get_sub_field('image')['url'];
@@ -302,10 +316,11 @@
                             ?>
                             <button data-target="<?php echo $video['url']; ?>"
                                     style="background-image:url('<?php echo $image; ?>')"
-                                    class="section-videos-nav-wrapper-list-item">
+                                    class="section-videos-nav-wrapper-list-item <?php echo $i === 0 ? 'active' : '' ?>">
                                 <span><?php echo $video['title']; ?></span>
                             </button>
                             <?php
+                            $i++;
                         endwhile;
                     endif;
 

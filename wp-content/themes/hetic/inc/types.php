@@ -29,15 +29,6 @@ function add_exhibitions_type_init() {
 	register_post_type( 'exhibitions', $args );
 }
 add_action( 'init', 'add_exhibitions_type_init' );
-function add_videos_type_init() {
-	$args = array(
-		'public' => true,
-		'label'  => 'Vidéos'
-	);
-	register_post_type( 'video', $args );
-}
-
-add_action( 'init', 'add_videos_type_init' );
 
 register_taxonomy( 'years', ['exhibitions'], [
 	'label'        => __( 'Année' ),

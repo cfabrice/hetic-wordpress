@@ -19,7 +19,7 @@
             </header>
             <div class="row">
                 <div class="item-container menu">
-                    <h4 class="item-title menu-title">Exhibitions {{ activeYear }}</h4>
+                    <h4 class="item-title menu-title"><?php the_field('exhibitions') ?> {{ activeYear }}</h4>
                     <ul class="list-exhibtions">
                         <li class="exhibition-item" v-for="exhibition in exhibitions">
                             <button class="exhibition-item-link" @click="getArticle(exhibition.ID)">{{ exhibition.city

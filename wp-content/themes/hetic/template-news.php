@@ -40,11 +40,4 @@
             <img src="<?php echo IMAGES_URL ?>/loader.svg" alt="Loader">
         </div>
     </main>
-    <style>
-        .loader {
-            display: flex;
-            justify-content: center;
-            align-content: center;
-        }
-    </style>
 <?php get_footer(); ?>
